@@ -9301,3 +9301,340 @@ SELECT TOP(@__p_1) [a].[Id], [a].[CreationTime], [a].[CreatorUserId], [a].[IsAba
 FROM [AbpBackgroundJobs] AS [a]
 WHERE ([a].[IsAbandoned] <> CAST(1 AS bit)) AND ([a].[NextTryTime] <= @__Now_0)
 ORDER BY [a].[Priority] DESC, [a].[TryCount], [a].[NextTryTime]
+INFO  2022-03-23 21:51:07,468 [11   ] osoft.EntityFrameworkCore.Infrastructure - Entity Framework Core 5.0.10 initialized 'BooksDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+INFO  2022-03-23 21:51:07,469 [11   ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (0ms) [Parameters=[@__p_1='?' (DbType = Int32), @__Now_0='?' (DbType = DateTime2)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(@__p_1) [a].[Id], [a].[CreationTime], [a].[CreatorUserId], [a].[IsAbandoned], [a].[JobArgs], [a].[JobType], [a].[LastTryTime], [a].[NextTryTime], [a].[Priority], [a].[TryCount]
+FROM [AbpBackgroundJobs] AS [a]
+WHERE ([a].[IsAbandoned] <> CAST(1 AS bit)) AND ([a].[NextTryTime] <= @__Now_0)
+ORDER BY [a].[Priority] DESC, [a].[TryCount], [a].[NextTryTime]
+INFO  2022-03-23 21:51:12,483 [7    ] osoft.EntityFrameworkCore.Infrastructure - Entity Framework Core 5.0.10 initialized 'BooksDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+INFO  2022-03-23 21:51:12,485 [7    ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__Now_0='?' (DbType = DateTime2)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(@__p_1) [a].[Id], [a].[CreationTime], [a].[CreatorUserId], [a].[IsAbandoned], [a].[JobArgs], [a].[JobType], [a].[LastTryTime], [a].[NextTryTime], [a].[Priority], [a].[TryCount]
+FROM [AbpBackgroundJobs] AS [a]
+WHERE ([a].[IsAbandoned] <> CAST(1 AS bit)) AND ([a].[NextTryTime] <= @__Now_0)
+ORDER BY [a].[Priority] DESC, [a].[TryCount], [a].[NextTryTime]
+INFO  2022-03-23 21:51:17,492 [11   ] osoft.EntityFrameworkCore.Infrastructure - Entity Framework Core 5.0.10 initialized 'BooksDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+INFO  2022-03-23 21:51:17,501 [11   ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (7ms) [Parameters=[@__p_1='?' (DbType = Int32), @__Now_0='?' (DbType = DateTime2)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(@__p_1) [a].[Id], [a].[CreationTime], [a].[CreatorUserId], [a].[IsAbandoned], [a].[JobArgs], [a].[JobType], [a].[LastTryTime], [a].[NextTryTime], [a].[Priority], [a].[TryCount]
+FROM [AbpBackgroundJobs] AS [a]
+WHERE ([a].[IsAbandoned] <> CAST(1 AS bit)) AND ([a].[NextTryTime] <= @__Now_0)
+ORDER BY [a].[Priority] DESC, [a].[TryCount], [a].[NextTryTime]
+INFO  2022-03-23 21:51:22,510 [11   ] osoft.EntityFrameworkCore.Infrastructure - Entity Framework Core 5.0.10 initialized 'BooksDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+INFO  2022-03-23 21:51:22,517 [11   ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (5ms) [Parameters=[@__p_1='?' (DbType = Int32), @__Now_0='?' (DbType = DateTime2)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(@__p_1) [a].[Id], [a].[CreationTime], [a].[CreatorUserId], [a].[IsAbandoned], [a].[JobArgs], [a].[JobType], [a].[LastTryTime], [a].[NextTryTime], [a].[Priority], [a].[TryCount]
+FROM [AbpBackgroundJobs] AS [a]
+WHERE ([a].[IsAbandoned] <> CAST(1 AS bit)) AND ([a].[NextTryTime] <= @__Now_0)
+ORDER BY [a].[Priority] DESC, [a].[TryCount], [a].[NextTryTime]
+INFO  2022-03-23 21:51:26,992 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/2 OPTIONS https://localhost:44311/signalr/negotiate?enc_auth_token=wNYmO41%2F48SHNstaLVXxHCCre29BZQl1NhC6NM3R3rzpXtPQxVzH6jEzA%2FQhXFN5tu6Fk7pO53uppm1mVXMZgxbyRVz26dnepi%2FFyB6axBY%2B6gq1GL%2BuRQgoiFUCjRN2p8w6LevViwKlHyWZZJZO1DGVSjAi1m2U%2Bog9pkHw9%2FQR4Nl%2FDPnoP9JYDMpZ1zxx09u6s0GZ9%2FQ5Sjk%2BL0UfcSCbl38X8he5w9UIn%2FHvxh7ysM1CiPLsoOwtbiieSRVmrmt0JjnipAn4%2FK283F8GrGwzwgehWsqefmUnM0ckMwNfOaJqxA4FdQOAkJd5W%2BXxvn0EW4DBPN18ygT5%2BVHg%2FBfrxQkJ4UKKwiuVhh2SKEoUj%2BsWMTcim5KzmTV5hgWiwaZNep8bK%2FjqBz4S%2FwGeE91KUq37jJprzeWe0QJ5CQu8i7cFzbvTf7kikmp2KOq%2BV2qEiECQkP1wf3jgQxfoYgzoufnBo1%2BZGZV5cwWl3RajG7ZvqJvB2Exhw%2BTPvD9r4rUIuwG0AOadYyQ%2BAPNCzrItV4RBWVaMEOY0vd%2FJTLazjPAitEtBcbdZTr5a6yY3HoeLrXe%2FLNgNYv4jtfCDIHk%2FSzqReyHOSMOxCKWsNueCOb%2FabPlMTBj6GfqcJmLGbIzJLagy2aSh9AnhYv8Qlp%2FdYoHvL5l%2F73xWIoOIC7gUhx15KSiNcbJosiNoKH%2BurXpw0KmJMSbsYndjxfVOodG%2B95xL4VbCYW43FzhwuakMnj0Js99Q4VmyAzCEU9N%2Fa%2FtjUqhM9W7AQ4dW2zyqCBsrB6mQppHUjeQemWYI5Wa%2FuX9yuhSE%2BoVqIktXsy83%2FLZyENZnBam1OZlKL%2FvHzTW1nJMsN3Naiv0VPY4dMKStEUy%2FDdhUfELee1enNmob8dhe476bYnW1CJJPVV%2B0w32T2Lk71Z37xFxX5xcwuFg2%2FBwE4SfTrZAGBNikp91yD8ZnJ96xLwQusRNBvHmnB8uF%2F%2Fc3yoHLXnTnCQNdJkfwGphmbGreluCjdC9ss%2FBuLj%2BrbH7ZR8mx4DZXsq72BQ%3D%3D - -
+INFO  2022-03-23 21:51:26,994 [4    ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2022-03-23 21:51:26,995 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished HTTP/2 OPTIONS https://localhost:44311/signalr/negotiate?enc_auth_token=wNYmO41%2F48SHNstaLVXxHCCre29BZQl1NhC6NM3R3rzpXtPQxVzH6jEzA%2FQhXFN5tu6Fk7pO53uppm1mVXMZgxbyRVz26dnepi%2FFyB6axBY%2B6gq1GL%2BuRQgoiFUCjRN2p8w6LevViwKlHyWZZJZO1DGVSjAi1m2U%2Bog9pkHw9%2FQR4Nl%2FDPnoP9JYDMpZ1zxx09u6s0GZ9%2FQ5Sjk%2BL0UfcSCbl38X8he5w9UIn%2FHvxh7ysM1CiPLsoOwtbiieSRVmrmt0JjnipAn4%2FK283F8GrGwzwgehWsqefmUnM0ckMwNfOaJqxA4FdQOAkJd5W%2BXxvn0EW4DBPN18ygT5%2BVHg%2FBfrxQkJ4UKKwiuVhh2SKEoUj%2BsWMTcim5KzmTV5hgWiwaZNep8bK%2FjqBz4S%2FwGeE91KUq37jJprzeWe0QJ5CQu8i7cFzbvTf7kikmp2KOq%2BV2qEiECQkP1wf3jgQxfoYgzoufnBo1%2BZGZV5cwWl3RajG7ZvqJvB2Exhw%2BTPvD9r4rUIuwG0AOadYyQ%2BAPNCzrItV4RBWVaMEOY0vd%2FJTLazjPAitEtBcbdZTr5a6yY3HoeLrXe%2FLNgNYv4jtfCDIHk%2FSzqReyHOSMOxCKWsNueCOb%2FabPlMTBj6GfqcJmLGbIzJLagy2aSh9AnhYv8Qlp%2FdYoHvL5l%2F73xWIoOIC7gUhx15KSiNcbJosiNoKH%2BurXpw0KmJMSbsYndjxfVOodG%2B95xL4VbCYW43FzhwuakMnj0Js99Q4VmyAzCEU9N%2Fa%2FtjUqhM9W7AQ4dW2zyqCBsrB6mQppHUjeQemWYI5Wa%2FuX9yuhSE%2BoVqIktXsy83%2FLZyENZnBam1OZlKL%2FvHzTW1nJMsN3Naiv0VPY4dMKStEUy%2FDdhUfELee1enNmob8dhe476bYnW1CJJPVV%2B0w32T2Lk71Z37xFxX5xcwuFg2%2FBwE4SfTrZAGBNikp91yD8ZnJ96xLwQusRNBvHmnB8uF%2F%2Fc3yoHLXnTnCQNdJkfwGphmbGreluCjdC9ss%2FBuLj%2BrbH7ZR8mx4DZXsq72BQ%3D%3D - - - 204 - - 2.6435ms
+INFO  2022-03-23 21:51:26,996 [22   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/2 POST https://localhost:44311/signalr/negotiate?enc_auth_token=wNYmO41%2F48SHNstaLVXxHCCre29BZQl1NhC6NM3R3rzpXtPQxVzH6jEzA%2FQhXFN5tu6Fk7pO53uppm1mVXMZgxbyRVz26dnepi%2FFyB6axBY%2B6gq1GL%2BuRQgoiFUCjRN2p8w6LevViwKlHyWZZJZO1DGVSjAi1m2U%2Bog9pkHw9%2FQR4Nl%2FDPnoP9JYDMpZ1zxx09u6s0GZ9%2FQ5Sjk%2BL0UfcSCbl38X8he5w9UIn%2FHvxh7ysM1CiPLsoOwtbiieSRVmrmt0JjnipAn4%2FK283F8GrGwzwgehWsqefmUnM0ckMwNfOaJqxA4FdQOAkJd5W%2BXxvn0EW4DBPN18ygT5%2BVHg%2FBfrxQkJ4UKKwiuVhh2SKEoUj%2BsWMTcim5KzmTV5hgWiwaZNep8bK%2FjqBz4S%2FwGeE91KUq37jJprzeWe0QJ5CQu8i7cFzbvTf7kikmp2KOq%2BV2qEiECQkP1wf3jgQxfoYgzoufnBo1%2BZGZV5cwWl3RajG7ZvqJvB2Exhw%2BTPvD9r4rUIuwG0AOadYyQ%2BAPNCzrItV4RBWVaMEOY0vd%2FJTLazjPAitEtBcbdZTr5a6yY3HoeLrXe%2FLNgNYv4jtfCDIHk%2FSzqReyHOSMOxCKWsNueCOb%2FabPlMTBj6GfqcJmLGbIzJLagy2aSh9AnhYv8Qlp%2FdYoHvL5l%2F73xWIoOIC7gUhx15KSiNcbJosiNoKH%2BurXpw0KmJMSbsYndjxfVOodG%2B95xL4VbCYW43FzhwuakMnj0Js99Q4VmyAzCEU9N%2Fa%2FtjUqhM9W7AQ4dW2zyqCBsrB6mQppHUjeQemWYI5Wa%2FuX9yuhSE%2BoVqIktXsy83%2FLZyENZnBam1OZlKL%2FvHzTW1nJMsN3Naiv0VPY4dMKStEUy%2FDdhUfELee1enNmob8dhe476bYnW1CJJPVV%2B0w32T2Lk71Z37xFxX5xcwuFg2%2FBwE4SfTrZAGBNikp91yD8ZnJ96xLwQusRNBvHmnB8uF%2F%2Fc3yoHLXnTnCQNdJkfwGphmbGreluCjdC9ss%2FBuLj%2BrbH7ZR8mx4DZXsq72BQ%3D%3D text/plain;charset=UTF-8 0
+INFO  2022-03-23 21:51:26,996 [22   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2022-03-23 21:51:27,001 [22   ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+INFO  2022-03-23 21:51:27,001 [22   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint '/signalr/negotiate'
+INFO  2022-03-23 21:51:27,009 [22   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint '/signalr/negotiate'
+INFO  2022-03-23 21:51:27,010 [22   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished HTTP/2 POST https://localhost:44311/signalr/negotiate?enc_auth_token=wNYmO41%2F48SHNstaLVXxHCCre29BZQl1NhC6NM3R3rzpXtPQxVzH6jEzA%2FQhXFN5tu6Fk7pO53uppm1mVXMZgxbyRVz26dnepi%2FFyB6axBY%2B6gq1GL%2BuRQgoiFUCjRN2p8w6LevViwKlHyWZZJZO1DGVSjAi1m2U%2Bog9pkHw9%2FQR4Nl%2FDPnoP9JYDMpZ1zxx09u6s0GZ9%2FQ5Sjk%2BL0UfcSCbl38X8he5w9UIn%2FHvxh7ysM1CiPLsoOwtbiieSRVmrmt0JjnipAn4%2FK283F8GrGwzwgehWsqefmUnM0ckMwNfOaJqxA4FdQOAkJd5W%2BXxvn0EW4DBPN18ygT5%2BVHg%2FBfrxQkJ4UKKwiuVhh2SKEoUj%2BsWMTcim5KzmTV5hgWiwaZNep8bK%2FjqBz4S%2FwGeE91KUq37jJprzeWe0QJ5CQu8i7cFzbvTf7kikmp2KOq%2BV2qEiECQkP1wf3jgQxfoYgzoufnBo1%2BZGZV5cwWl3RajG7ZvqJvB2Exhw%2BTPvD9r4rUIuwG0AOadYyQ%2BAPNCzrItV4RBWVaMEOY0vd%2FJTLazjPAitEtBcbdZTr5a6yY3HoeLrXe%2FLNgNYv4jtfCDIHk%2FSzqReyHOSMOxCKWsNueCOb%2FabPlMTBj6GfqcJmLGbIzJLagy2aSh9AnhYv8Qlp%2FdYoHvL5l%2F73xWIoOIC7gUhx15KSiNcbJosiNoKH%2BurXpw0KmJMSbsYndjxfVOodG%2B95xL4VbCYW43FzhwuakMnj0Js99Q4VmyAzCEU9N%2Fa%2FtjUqhM9W7AQ4dW2zyqCBsrB6mQppHUjeQemWYI5Wa%2FuX9yuhSE%2BoVqIktXsy83%2FLZyENZnBam1OZlKL%2FvHzTW1nJMsN3Naiv0VPY4dMKStEUy%2FDdhUfELee1enNmob8dhe476bYnW1CJJPVV%2B0w32T2Lk71Z37xFxX5xcwuFg2%2FBwE4SfTrZAGBNikp91yD8ZnJ96xLwQusRNBvHmnB8uF%2F%2Fc3yoHLXnTnCQNdJkfwGphmbGreluCjdC9ss%2FBuLj%2BrbH7ZR8mx4DZXsq72BQ%3D%3D text/plain;charset=UTF-8 0 - 200 273 application/json 13.8135ms
+INFO  2022-03-23 21:51:27,017 [22   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET https://localhost:44311/signalr?enc_auth_token=wNYmO41%2F48SHNstaLVXxHCCre29BZQl1NhC6NM3R3rzpXtPQxVzH6jEzA%2FQhXFN5tu6Fk7pO53uppm1mVXMZgxbyRVz26dnepi%2FFyB6axBY%2B6gq1GL%2BuRQgoiFUCjRN2p8w6LevViwKlHyWZZJZO1DGVSjAi1m2U%2Bog9pkHw9%2FQR4Nl%2FDPnoP9JYDMpZ1zxx09u6s0GZ9%2FQ5Sjk%2BL0UfcSCbl38X8he5w9UIn%2FHvxh7ysM1CiPLsoOwtbiieSRVmrmt0JjnipAn4%2FK283F8GrGwzwgehWsqefmUnM0ckMwNfOaJqxA4FdQOAkJd5W%2BXxvn0EW4DBPN18ygT5%2BVHg%2FBfrxQkJ4UKKwiuVhh2SKEoUj%2BsWMTcim5KzmTV5hgWiwaZNep8bK%2FjqBz4S%2FwGeE91KUq37jJprzeWe0QJ5CQu8i7cFzbvTf7kikmp2KOq%2BV2qEiECQkP1wf3jgQxfoYgzoufnBo1%2BZGZV5cwWl3RajG7ZvqJvB2Exhw%2BTPvD9r4rUIuwG0AOadYyQ%2BAPNCzrItV4RBWVaMEOY0vd%2FJTLazjPAitEtBcbdZTr5a6yY3HoeLrXe%2FLNgNYv4jtfCDIHk%2FSzqReyHOSMOxCKWsNueCOb%2FabPlMTBj6GfqcJmLGbIzJLagy2aSh9AnhYv8Qlp%2FdYoHvL5l%2F73xWIoOIC7gUhx15KSiNcbJosiNoKH%2BurXpw0KmJMSbsYndjxfVOodG%2B95xL4VbCYW43FzhwuakMnj0Js99Q4VmyAzCEU9N%2Fa%2FtjUqhM9W7AQ4dW2zyqCBsrB6mQppHUjeQemWYI5Wa%2FuX9yuhSE%2BoVqIktXsy83%2FLZyENZnBam1OZlKL%2FvHzTW1nJMsN3Naiv0VPY4dMKStEUy%2FDdhUfELee1enNmob8dhe476bYnW1CJJPVV%2B0w32T2Lk71Z37xFxX5xcwuFg2%2FBwE4SfTrZAGBNikp91yD8ZnJ96xLwQusRNBvHmnB8uF%2F%2Fc3yoHLXnTnCQNdJkfwGphmbGreluCjdC9ss%2FBuLj%2BrbH7ZR8mx4DZXsq72BQ%3D%3D&id=q2frgcS_a1RKqadCsluLSA - -
+INFO  2022-03-23 21:51:27,018 [22   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2022-03-23 21:51:27,019 [22   ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+INFO  2022-03-23 21:51:27,019 [22   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint '/signalr'
+DEBUG 2022-03-23 21:51:27,039 [21   ] Abp.AspNetCore.SignalR.Hubs.AbpCommonHub - A client is connected: {"ConnectionId":"q2frgcS_a1RKqadCsluLSA","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2022-03-23T21:51:27.0336898+02:00","Properties":{}}
+INFO  2022-03-23 21:51:27,532 [22   ] osoft.EntityFrameworkCore.Infrastructure - Entity Framework Core 5.0.10 initialized 'BooksDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+INFO  2022-03-23 21:51:27,534 [22   ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__Now_0='?' (DbType = DateTime2)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(@__p_1) [a].[Id], [a].[CreationTime], [a].[CreatorUserId], [a].[IsAbandoned], [a].[JobArgs], [a].[JobType], [a].[LastTryTime], [a].[NextTryTime], [a].[Priority], [a].[TryCount]
+FROM [AbpBackgroundJobs] AS [a]
+WHERE ([a].[IsAbandoned] <> CAST(1 AS bit)) AND ([a].[NextTryTime] <= @__Now_0)
+ORDER BY [a].[Priority] DESC, [a].[TryCount], [a].[NextTryTime]
+INFO  2022-03-23 21:51:32,546 [21   ] osoft.EntityFrameworkCore.Infrastructure - Entity Framework Core 5.0.10 initialized 'BooksDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+INFO  2022-03-23 21:51:32,548 [21   ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (0ms) [Parameters=[@__p_1='?' (DbType = Int32), @__Now_0='?' (DbType = DateTime2)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(@__p_1) [a].[Id], [a].[CreationTime], [a].[CreatorUserId], [a].[IsAbandoned], [a].[JobArgs], [a].[JobType], [a].[LastTryTime], [a].[NextTryTime], [a].[Priority], [a].[TryCount]
+FROM [AbpBackgroundJobs] AS [a]
+WHERE ([a].[IsAbandoned] <> CAST(1 AS bit)) AND ([a].[NextTryTime] <= @__Now_0)
+ORDER BY [a].[Priority] DESC, [a].[TryCount], [a].[NextTryTime]
+INFO  2022-03-23 21:51:37,556 [21   ] osoft.EntityFrameworkCore.Infrastructure - Entity Framework Core 5.0.10 initialized 'BooksDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+INFO  2022-03-23 21:51:37,557 [21   ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (0ms) [Parameters=[@__p_1='?' (DbType = Int32), @__Now_0='?' (DbType = DateTime2)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(@__p_1) [a].[Id], [a].[CreationTime], [a].[CreatorUserId], [a].[IsAbandoned], [a].[JobArgs], [a].[JobType], [a].[LastTryTime], [a].[NextTryTime], [a].[Priority], [a].[TryCount]
+FROM [AbpBackgroundJobs] AS [a]
+WHERE ([a].[IsAbandoned] <> CAST(1 AS bit)) AND ([a].[NextTryTime] <= @__Now_0)
+ORDER BY [a].[Priority] DESC, [a].[TryCount], [a].[NextTryTime]
+INFO  2022-03-23 21:51:42,573 [23   ] osoft.EntityFrameworkCore.Infrastructure - Entity Framework Core 5.0.10 initialized 'BooksDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+INFO  2022-03-23 21:51:42,576 [23   ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__Now_0='?' (DbType = DateTime2)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(@__p_1) [a].[Id], [a].[CreationTime], [a].[CreatorUserId], [a].[IsAbandoned], [a].[JobArgs], [a].[JobType], [a].[LastTryTime], [a].[NextTryTime], [a].[Priority], [a].[TryCount]
+FROM [AbpBackgroundJobs] AS [a]
+WHERE ([a].[IsAbandoned] <> CAST(1 AS bit)) AND ([a].[NextTryTime] <= @__Now_0)
+ORDER BY [a].[Priority] DESC, [a].[TryCount], [a].[NextTryTime]
+DEBUG 2022-03-23 21:51:47,311 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2022-03-23 21:51:47,349 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2022-03-23 21:51:47,361 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Books.Web.Host.Startup.BooksWebHostModule, Books.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2022-03-23 21:51:47,362 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Books.BooksWebCoreModule, Books.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2022-03-23 21:51:47,363 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Books.BooksApplicationModule, Books.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2022-03-23 21:51:47,363 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Books.BooksCoreModule, Books.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2022-03-23 21:51:47,363 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=6.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2022-03-23 21:51:47,363 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=6.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2022-03-23 21:51:47,363 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=6.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2022-03-23 21:51:47,364 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=6.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2022-03-23 21:51:47,364 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Books.EntityFrameworkCore.BooksEntityFrameworkModule, Books.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2022-03-23 21:51:47,364 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=6.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2022-03-23 21:51:47,364 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=6.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2022-03-23 21:51:47,364 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=6.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2022-03-23 21:51:47,364 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=6.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2022-03-23 21:51:47,364 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=6.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2022-03-23 21:51:47,364 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=6.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2022-03-23 21:51:47,366 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2022-03-23 21:51:47,398 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2022-03-23 21:51:47,398 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2022-03-23 21:51:47,398 [1    ] o.Configuration.LanguageManagementConfig - Converted Books (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2022-03-23 21:51:47,398 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2022-03-23 21:51:47,598 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: Books.EntityFrameworkCore.BooksDbContext, Books.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2022-03-23 21:51:47,720 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2022-03-23 21:51:47,741 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2022-03-23 21:51:47,748 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2022-03-23 21:51:47,751 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Books
+DEBUG 2022-03-23 21:51:47,753 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2022-03-23 21:51:47,758 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2022-03-23 21:51:47,759 [1    ] , Culture=neutral, PublicKeyToken=null]] - Start background worker: Abp.Authorization.Users.UserTokenExpirationWorker`2[[Books.MultiTenancy.Tenant, Books.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Books.Authorization.Users.User, Books.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+DEBUG 2022-03-23 21:51:47,786 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 9 classes define auto mapping attributes
+DEBUG 2022-03-23 21:51:47,786 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Books.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2022-03-23 21:51:47,790 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Books.Users.Dto.CreateUserDto
+DEBUG 2022-03-23 21:51:47,790 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Books.Users.Dto.UserDto
+DEBUG 2022-03-23 21:51:47,790 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Books.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2022-03-23 21:51:47,790 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Books.Sessions.Dto.UserLoginInfoDto
+DEBUG 2022-03-23 21:51:47,791 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Books.Roles.Dto.PermissionDto
+DEBUG 2022-03-23 21:51:47,791 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Books.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2022-03-23 21:51:47,791 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Books.MultiTenancy.Dto.TenantDto
+DEBUG 2022-03-23 21:51:47,791 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Books.Administration.Dto.StudentsDto
+WARN  2022-03-23 21:51:48,526 [1    ] oft.EntityFrameworkCore.Model.Validation - Entity 'Edition' has a global query filter defined and is the required end of a relationship with the entity 'EditionFeatureSetting'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+INFO  2022-03-23 21:51:48,641 [1    ] osoft.EntityFrameworkCore.Infrastructure - Entity Framework Core 5.0.10 initialized 'BooksDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+INFO  2022-03-23 21:51:48,935 [1    ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (13ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[CreationTime], [a].[CreatorUserId], [a].[DeleterUserId], [a].[DeletionTime], [a].[DisplayName], [a].[IsDeleted], [a].[LastModificationTime], [a].[LastModifierUserId], [a].[Name]
+FROM [AbpEditions] AS [a]
+WHERE [a].[Name] = N'Standard'
+INFO  2022-03-23 21:51:49,018 [1    ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (13ms) [Parameters=[@__language_Name_1='?' (Size = 128)], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AbpLanguages] AS [a]
+        WHERE [a].[TenantId] IS NULL AND ([a].[Name] = @__language_Name_1)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+INFO  2022-03-23 21:51:49,020 [1    ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (0ms) [Parameters=[@__language_Name_1='?' (Size = 128)], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AbpLanguages] AS [a]
+        WHERE [a].[TenantId] IS NULL AND ([a].[Name] = @__language_Name_1)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+INFO  2022-03-23 21:51:49,021 [1    ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (0ms) [Parameters=[@__language_Name_1='?' (Size = 128)], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AbpLanguages] AS [a]
+        WHERE [a].[TenantId] IS NULL AND ([a].[Name] = @__language_Name_1)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+INFO  2022-03-23 21:51:49,021 [1    ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (0ms) [Parameters=[@__language_Name_1='?' (Size = 128)], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AbpLanguages] AS [a]
+        WHERE [a].[TenantId] IS NULL AND ([a].[Name] = @__language_Name_1)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+INFO  2022-03-23 21:51:49,022 [1    ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (0ms) [Parameters=[@__language_Name_1='?' (Size = 128)], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AbpLanguages] AS [a]
+        WHERE [a].[TenantId] IS NULL AND ([a].[Name] = @__language_Name_1)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+INFO  2022-03-23 21:51:49,022 [1    ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (0ms) [Parameters=[@__language_Name_1='?' (Size = 128)], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AbpLanguages] AS [a]
+        WHERE [a].[TenantId] IS NULL AND ([a].[Name] = @__language_Name_1)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+INFO  2022-03-23 21:51:49,022 [1    ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (0ms) [Parameters=[@__language_Name_1='?' (Size = 128)], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AbpLanguages] AS [a]
+        WHERE [a].[TenantId] IS NULL AND ([a].[Name] = @__language_Name_1)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+INFO  2022-03-23 21:51:49,022 [1    ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (0ms) [Parameters=[@__language_Name_1='?' (Size = 128)], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AbpLanguages] AS [a]
+        WHERE [a].[TenantId] IS NULL AND ([a].[Name] = @__language_Name_1)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+INFO  2022-03-23 21:51:49,023 [1    ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (0ms) [Parameters=[@__language_Name_1='?' (Size = 128)], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AbpLanguages] AS [a]
+        WHERE [a].[TenantId] IS NULL AND ([a].[Name] = @__language_Name_1)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+INFO  2022-03-23 21:51:49,023 [1    ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (0ms) [Parameters=[@__language_Name_1='?' (Size = 128)], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AbpLanguages] AS [a]
+        WHERE [a].[TenantId] IS NULL AND ([a].[Name] = @__language_Name_1)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+INFO  2022-03-23 21:51:49,023 [1    ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (0ms) [Parameters=[@__language_Name_1='?' (Size = 128)], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AbpLanguages] AS [a]
+        WHERE [a].[TenantId] IS NULL AND ([a].[Name] = @__language_Name_1)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+INFO  2022-03-23 21:51:49,024 [1    ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (0ms) [Parameters=[@__language_Name_1='?' (Size = 128)], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AbpLanguages] AS [a]
+        WHERE [a].[TenantId] IS NULL AND ([a].[Name] = @__language_Name_1)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+INFO  2022-03-23 21:51:49,024 [1    ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (0ms) [Parameters=[@__language_Name_1='?' (Size = 128)], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AbpLanguages] AS [a]
+        WHERE [a].[TenantId] IS NULL AND ([a].[Name] = @__language_Name_1)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+INFO  2022-03-23 21:51:49,031 [1    ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[CreationTime], [a].[CreatorUserId], [a].[DeleterUserId], [a].[DeletionTime], [a].[Description], [a].[DisplayName], [a].[IsDefault], [a].[IsDeleted], [a].[IsStatic], [a].[LastModificationTime], [a].[LastModifierUserId], [a].[Name], [a].[NormalizedName], [a].[TenantId]
+FROM [AbpRoles] AS [a]
+WHERE [a].[TenantId] IS NULL AND ([a].[Name] = N'Admin')
+INFO  2022-03-23 21:51:49,067 [1    ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (2ms) [Parameters=[@__adminRoleForHost_Id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT [a].[Name]
+FROM [AbpPermissions] AS [a]
+WHERE ([a].[Discriminator] = N'RolePermissionSetting') AND ([a].[TenantId] IS NULL AND ([a].[RoleId] = @__adminRoleForHost_Id_0))
+INFO  2022-03-23 21:51:49,074 [1    ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[AuthenticationSource], [a].[ConcurrencyStamp], [a].[CreationTime], [a].[CreatorUserId], [a].[DeleterUserId], [a].[DeletionTime], [a].[EmailAddress], [a].[EmailConfirmationCode], [a].[IsActive], [a].[IsDeleted], [a].[IsEmailConfirmed], [a].[IsLockoutEnabled], [a].[IsPhoneNumberConfirmed], [a].[IsTwoFactorEnabled], [a].[LastModificationTime], [a].[LastModifierUserId], [a].[LockoutEndDateUtc], [a].[Name], [a].[NormalizedEmailAddress], [a].[NormalizedUserName], [a].[Password], [a].[PasswordResetCode], [a].[PhoneNumber], [a].[SecurityStamp], [a].[Surname], [a].[TenantId], [a].[UserName]
+FROM [AbpUsers] AS [a]
+WHERE [a].[TenantId] IS NULL AND ([a].[UserName] = N'admin')
+INFO  2022-03-23 21:51:49,130 [1    ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (1ms) [Parameters=[@__name_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AbpSettings] AS [a]
+        WHERE (([a].[Name] = @__name_0) AND [a].[TenantId] IS NULL) AND [a].[UserId] IS NULL) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+INFO  2022-03-23 21:51:49,130 [1    ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AbpSettings] AS [a]
+        WHERE (([a].[Name] = @__name_0) AND [a].[TenantId] IS NULL) AND [a].[UserId] IS NULL) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+INFO  2022-03-23 21:51:49,131 [1    ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (0ms) [Parameters=[@__name_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AbpSettings] AS [a]
+        WHERE (([a].[Name] = @__name_0) AND [a].[TenantId] IS NULL) AND [a].[UserId] IS NULL) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+INFO  2022-03-23 21:51:49,171 [1    ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConnectionString], [a].[CreationTime], [a].[CreatorUserId], [a].[DeleterUserId], [a].[DeletionTime], [a].[EditionId], [a].[IsActive], [a].[IsDeleted], [a].[LastModificationTime], [a].[LastModifierUserId], [a].[Name], [a].[TenancyName]
+FROM [AbpTenants] AS [a]
+WHERE [a].[TenancyName] = N'Default'
+INFO  2022-03-23 21:51:49,193 [1    ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (2ms) [Parameters=[@___tenantId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[CreationTime], [a].[CreatorUserId], [a].[DeleterUserId], [a].[DeletionTime], [a].[Description], [a].[DisplayName], [a].[IsDefault], [a].[IsDeleted], [a].[IsStatic], [a].[LastModificationTime], [a].[LastModifierUserId], [a].[Name], [a].[NormalizedName], [a].[TenantId]
+FROM [AbpRoles] AS [a]
+WHERE ([a].[TenantId] = @___tenantId_0) AND ([a].[Name] = N'Admin')
+INFO  2022-03-23 21:51:49,196 [1    ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (1ms) [Parameters=[@___tenantId_0='?' (DbType = Int32), @__adminRole_Id_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT [a].[Name]
+FROM [AbpPermissions] AS [a]
+WHERE ([a].[Discriminator] = N'RolePermissionSetting') AND (([a].[TenantId] = @___tenantId_0) AND ([a].[RoleId] = @__adminRole_Id_1))
+INFO  2022-03-23 21:51:49,202 [1    ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (2ms) [Parameters=[@___tenantId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[AuthenticationSource], [a].[ConcurrencyStamp], [a].[CreationTime], [a].[CreatorUserId], [a].[DeleterUserId], [a].[DeletionTime], [a].[EmailAddress], [a].[EmailConfirmationCode], [a].[IsActive], [a].[IsDeleted], [a].[IsEmailConfirmed], [a].[IsLockoutEnabled], [a].[IsPhoneNumberConfirmed], [a].[IsTwoFactorEnabled], [a].[LastModificationTime], [a].[LastModifierUserId], [a].[LockoutEndDateUtc], [a].[Name], [a].[NormalizedEmailAddress], [a].[NormalizedUserName], [a].[Password], [a].[PasswordResetCode], [a].[PhoneNumber], [a].[SecurityStamp], [a].[Surname], [a].[TenantId], [a].[UserName]
+FROM [AbpUsers] AS [a]
+WHERE ([a].[TenantId] = @___tenantId_0) AND ([a].[UserName] = N'admin')
+INFO  2022-03-23 21:51:49,231 [1    ] osoft.EntityFrameworkCore.Infrastructure - Entity Framework Core 5.0.10 initialized 'BooksDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+INFO  2022-03-23 21:51:49,242 [1    ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (1ms) [Parameters=[@__ef_filter__p_0='?' (DbType = Boolean), @__ef_filter__p_1='?' (DbType = Boolean)], CommandType='Text', CommandTimeout='30']
+SELECT [a].[Id], [a].[CreationTime], [a].[CreatorUserId], [a].[DeleterUserId], [a].[DeletionTime], [a].[DisplayName], [a].[Icon], [a].[IsDeleted], [a].[IsDisabled], [a].[LastModificationTime], [a].[LastModifierUserId], [a].[Name], [a].[TenantId]
+FROM [AbpLanguages] AS [a]
+WHERE ((@__ef_filter__p_0 = CAST(1 AS bit)) OR ([a].[IsDeleted] <> CAST(1 AS bit))) AND ((@__ef_filter__p_1 = CAST(1 AS bit)) OR [a].[TenantId] IS NULL)
+INFO  2022-03-23 21:51:49,288 [1    ] osoft.EntityFrameworkCore.Infrastructure - Entity Framework Core 5.0.10 initialized 'BooksDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+INFO  2022-03-23 21:51:49,298 [1    ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (1ms) [Parameters=[@__ef_filter__p_0='?' (DbType = Boolean)], CommandType='Text', CommandTimeout='30']
+SELECT [a].[Id], [a].[CreationTime], [a].[CreatorUserId], [a].[LastModificationTime], [a].[LastModifierUserId], [a].[Name], [a].[TenantId], [a].[UserId], [a].[Value]
+FROM [AbpSettings] AS [a]
+WHERE ((@__ef_filter__p_0 = CAST(1 AS bit)) OR [a].[TenantId] IS NULL) AND ([a].[UserId] IS NULL AND [a].[TenantId] IS NULL)
+INFO  2022-03-23 21:51:49,317 [1    ] tCore.Builder.RequestLocalizationOptions - Supported Request Localization Cultures: en,es-MX,fr,de,it,nl,pt-BR,tr,ru,ar,fa,ja,zh-Hans
+INFO  2022-03-23 21:51:49,433 [1    ] taProtection.KeyManagement.XmlKeyManager - User profile is available. Using 'C:\Users\omars\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+WARN  2022-03-23 21:51:49,488 [1    ] Microsoft.AspNetCore.Server.Kestrel      - Overriding address(es) 'https://localhost:44311/'. Binding to endpoints defined in UseKestrel() instead.
+INFO  2022-03-23 21:51:49,581 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/2 GET https://localhost:44311/swagger/index.html - -
+INFO  2022-03-23 21:51:49,633 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/2 OPTIONS https://localhost:44311/signalr/negotiate?enc_auth_token=wNYmO41%2F48SHNstaLVXxHCCre29BZQl1NhC6NM3R3rzpXtPQxVzH6jEzA%2FQhXFN5tu6Fk7pO53uppm1mVXMZgxbyRVz26dnepi%2FFyB6axBY%2B6gq1GL%2BuRQgoiFUCjRN2p8w6LevViwKlHyWZZJZO1DGVSjAi1m2U%2Bog9pkHw9%2FQR4Nl%2FDPnoP9JYDMpZ1zxx09u6s0GZ9%2FQ5Sjk%2BL0UfcSCbl38X8he5w9UIn%2FHvxh7ysM1CiPLsoOwtbiieSRVmrmt0JjnipAn4%2FK283F8GrGwzwgehWsqefmUnM0ckMwNfOaJqxA4FdQOAkJd5W%2BXxvn0EW4DBPN18ygT5%2BVHg%2FBfrxQkJ4UKKwiuVhh2SKEoUj%2BsWMTcim5KzmTV5hgWiwaZNep8bK%2FjqBz4S%2FwGeE91KUq37jJprzeWe0QJ5CQu8i7cFzbvTf7kikmp2KOq%2BV2qEiECQkP1wf3jgQxfoYgzoufnBo1%2BZGZV5cwWl3RajG7ZvqJvB2Exhw%2BTPvD9r4rUIuwG0AOadYyQ%2BAPNCzrItV4RBWVaMEOY0vd%2FJTLazjPAitEtBcbdZTr5a6yY3HoeLrXe%2FLNgNYv4jtfCDIHk%2FSzqReyHOSMOxCKWsNueCOb%2FabPlMTBj6GfqcJmLGbIzJLagy2aSh9AnhYv8Qlp%2FdYoHvL5l%2F73xWIoOIC7gUhx15KSiNcbJosiNoKH%2BurXpw0KmJMSbsYndjxfVOodG%2B95xL4VbCYW43FzhwuakMnj0Js99Q4VmyAzCEU9N%2Fa%2FtjUqhM9W7AQ4dW2zyqCBsrB6mQppHUjeQemWYI5Wa%2FuX9yuhSE%2BoVqIktXsy83%2FLZyENZnBam1OZlKL%2FvHzTW1nJMsN3Naiv0VPY4dMKStEUy%2FDdhUfELee1enNmob8dhe476bYnW1CJJPVV%2B0w32T2Lk71Z37xFxX5xcwuFg2%2FBwE4SfTrZAGBNikp91yD8ZnJ96xLwQusRNBvHmnB8uF%2F%2Fc3yoHLXnTnCQNdJkfwGphmbGreluCjdC9ss%2FBuLj%2BrbH7ZR8mx4DZXsq72BQ%3D%3D - -
+INFO  2022-03-23 21:51:49,636 [9    ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2022-03-23 21:51:49,640 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished HTTP/2 OPTIONS https://localhost:44311/signalr/negotiate?enc_auth_token=wNYmO41%2F48SHNstaLVXxHCCre29BZQl1NhC6NM3R3rzpXtPQxVzH6jEzA%2FQhXFN5tu6Fk7pO53uppm1mVXMZgxbyRVz26dnepi%2FFyB6axBY%2B6gq1GL%2BuRQgoiFUCjRN2p8w6LevViwKlHyWZZJZO1DGVSjAi1m2U%2Bog9pkHw9%2FQR4Nl%2FDPnoP9JYDMpZ1zxx09u6s0GZ9%2FQ5Sjk%2BL0UfcSCbl38X8he5w9UIn%2FHvxh7ysM1CiPLsoOwtbiieSRVmrmt0JjnipAn4%2FK283F8GrGwzwgehWsqefmUnM0ckMwNfOaJqxA4FdQOAkJd5W%2BXxvn0EW4DBPN18ygT5%2BVHg%2FBfrxQkJ4UKKwiuVhh2SKEoUj%2BsWMTcim5KzmTV5hgWiwaZNep8bK%2FjqBz4S%2FwGeE91KUq37jJprzeWe0QJ5CQu8i7cFzbvTf7kikmp2KOq%2BV2qEiECQkP1wf3jgQxfoYgzoufnBo1%2BZGZV5cwWl3RajG7ZvqJvB2Exhw%2BTPvD9r4rUIuwG0AOadYyQ%2BAPNCzrItV4RBWVaMEOY0vd%2FJTLazjPAitEtBcbdZTr5a6yY3HoeLrXe%2FLNgNYv4jtfCDIHk%2FSzqReyHOSMOxCKWsNueCOb%2FabPlMTBj6GfqcJmLGbIzJLagy2aSh9AnhYv8Qlp%2FdYoHvL5l%2F73xWIoOIC7gUhx15KSiNcbJosiNoKH%2BurXpw0KmJMSbsYndjxfVOodG%2B95xL4VbCYW43FzhwuakMnj0Js99Q4VmyAzCEU9N%2Fa%2FtjUqhM9W7AQ4dW2zyqCBsrB6mQppHUjeQemWYI5Wa%2FuX9yuhSE%2BoVqIktXsy83%2FLZyENZnBam1OZlKL%2FvHzTW1nJMsN3Naiv0VPY4dMKStEUy%2FDdhUfELee1enNmob8dhe476bYnW1CJJPVV%2B0w32T2Lk71Z37xFxX5xcwuFg2%2FBwE4SfTrZAGBNikp91yD8ZnJ96xLwQusRNBvHmnB8uF%2F%2Fc3yoHLXnTnCQNdJkfwGphmbGreluCjdC9ss%2FBuLj%2BrbH7ZR8mx4DZXsq72BQ%3D%3D - - - 204 - - 6.8942ms
+INFO  2022-03-23 21:51:49,641 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/2 POST https://localhost:44311/signalr/negotiate?enc_auth_token=wNYmO41%2F48SHNstaLVXxHCCre29BZQl1NhC6NM3R3rzpXtPQxVzH6jEzA%2FQhXFN5tu6Fk7pO53uppm1mVXMZgxbyRVz26dnepi%2FFyB6axBY%2B6gq1GL%2BuRQgoiFUCjRN2p8w6LevViwKlHyWZZJZO1DGVSjAi1m2U%2Bog9pkHw9%2FQR4Nl%2FDPnoP9JYDMpZ1zxx09u6s0GZ9%2FQ5Sjk%2BL0UfcSCbl38X8he5w9UIn%2FHvxh7ysM1CiPLsoOwtbiieSRVmrmt0JjnipAn4%2FK283F8GrGwzwgehWsqefmUnM0ckMwNfOaJqxA4FdQOAkJd5W%2BXxvn0EW4DBPN18ygT5%2BVHg%2FBfrxQkJ4UKKwiuVhh2SKEoUj%2BsWMTcim5KzmTV5hgWiwaZNep8bK%2FjqBz4S%2FwGeE91KUq37jJprzeWe0QJ5CQu8i7cFzbvTf7kikmp2KOq%2BV2qEiECQkP1wf3jgQxfoYgzoufnBo1%2BZGZV5cwWl3RajG7ZvqJvB2Exhw%2BTPvD9r4rUIuwG0AOadYyQ%2BAPNCzrItV4RBWVaMEOY0vd%2FJTLazjPAitEtBcbdZTr5a6yY3HoeLrXe%2FLNgNYv4jtfCDIHk%2FSzqReyHOSMOxCKWsNueCOb%2FabPlMTBj6GfqcJmLGbIzJLagy2aSh9AnhYv8Qlp%2FdYoHvL5l%2F73xWIoOIC7gUhx15KSiNcbJosiNoKH%2BurXpw0KmJMSbsYndjxfVOodG%2B95xL4VbCYW43FzhwuakMnj0Js99Q4VmyAzCEU9N%2Fa%2FtjUqhM9W7AQ4dW2zyqCBsrB6mQppHUjeQemWYI5Wa%2FuX9yuhSE%2BoVqIktXsy83%2FLZyENZnBam1OZlKL%2FvHzTW1nJMsN3Naiv0VPY4dMKStEUy%2FDdhUfELee1enNmob8dhe476bYnW1CJJPVV%2B0w32T2Lk71Z37xFxX5xcwuFg2%2FBwE4SfTrZAGBNikp91yD8ZnJ96xLwQusRNBvHmnB8uF%2F%2Fc3yoHLXnTnCQNdJkfwGphmbGreluCjdC9ss%2FBuLj%2BrbH7ZR8mx4DZXsq72BQ%3D%3D text/plain;charset=UTF-8 0
+INFO  2022-03-23 21:51:49,642 [9    ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2022-03-23 21:51:49,729 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/2 GET https://localhost:44311/_framework/aspnetcore-browser-refresh.js - -
+INFO  2022-03-23 21:51:49,730 [15   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished HTTP/2 GET https://localhost:44311/swagger/index.html - - - 200 - text/html;charset=utf-8 149.9903ms
+INFO  2022-03-23 21:51:49,731 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished HTTP/2 GET https://localhost:44311/_framework/aspnetcore-browser-refresh.js - - - 200 11986 application/javascript;+charset=utf-8 1.8835ms
+INFO  2022-03-23 21:51:49,740 [9    ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+INFO  2022-03-23 21:51:49,766 [9    ] osoft.EntityFrameworkCore.Infrastructure - Entity Framework Core 5.0.10 initialized 'BooksDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+INFO  2022-03-23 21:51:49,794 [10   ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (7ms) [Parameters=[@__ef_filter__p_0='?' (DbType = Boolean), @__userId_0='?' (DbType = Int64)], CommandType='Text', CommandTimeout='30']
+SELECT [a].[Id], [a].[CreationTime], [a].[CreatorUserId], [a].[LastModificationTime], [a].[LastModifierUserId], [a].[Name], [a].[TenantId], [a].[UserId], [a].[Value]
+FROM [AbpSettings] AS [a]
+WHERE ((@__ef_filter__p_0 = CAST(1 AS bit)) OR [a].[TenantId] IS NULL) AND (([a].[UserId] = @__userId_0) AND [a].[TenantId] IS NULL)
+INFO  2022-03-23 21:51:49,824 [10   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint '/signalr/negotiate'
+INFO  2022-03-23 21:51:49,834 [10   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint '/signalr/negotiate'
+INFO  2022-03-23 21:51:49,834 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished HTTP/2 POST https://localhost:44311/signalr/negotiate?enc_auth_token=wNYmO41%2F48SHNstaLVXxHCCre29BZQl1NhC6NM3R3rzpXtPQxVzH6jEzA%2FQhXFN5tu6Fk7pO53uppm1mVXMZgxbyRVz26dnepi%2FFyB6axBY%2B6gq1GL%2BuRQgoiFUCjRN2p8w6LevViwKlHyWZZJZO1DGVSjAi1m2U%2Bog9pkHw9%2FQR4Nl%2FDPnoP9JYDMpZ1zxx09u6s0GZ9%2FQ5Sjk%2BL0UfcSCbl38X8he5w9UIn%2FHvxh7ysM1CiPLsoOwtbiieSRVmrmt0JjnipAn4%2FK283F8GrGwzwgehWsqefmUnM0ckMwNfOaJqxA4FdQOAkJd5W%2BXxvn0EW4DBPN18ygT5%2BVHg%2FBfrxQkJ4UKKwiuVhh2SKEoUj%2BsWMTcim5KzmTV5hgWiwaZNep8bK%2FjqBz4S%2FwGeE91KUq37jJprzeWe0QJ5CQu8i7cFzbvTf7kikmp2KOq%2BV2qEiECQkP1wf3jgQxfoYgzoufnBo1%2BZGZV5cwWl3RajG7ZvqJvB2Exhw%2BTPvD9r4rUIuwG0AOadYyQ%2BAPNCzrItV4RBWVaMEOY0vd%2FJTLazjPAitEtBcbdZTr5a6yY3HoeLrXe%2FLNgNYv4jtfCDIHk%2FSzqReyHOSMOxCKWsNueCOb%2FabPlMTBj6GfqcJmLGbIzJLagy2aSh9AnhYv8Qlp%2FdYoHvL5l%2F73xWIoOIC7gUhx15KSiNcbJosiNoKH%2BurXpw0KmJMSbsYndjxfVOodG%2B95xL4VbCYW43FzhwuakMnj0Js99Q4VmyAzCEU9N%2Fa%2FtjUqhM9W7AQ4dW2zyqCBsrB6mQppHUjeQemWYI5Wa%2FuX9yuhSE%2BoVqIktXsy83%2FLZyENZnBam1OZlKL%2FvHzTW1nJMsN3Naiv0VPY4dMKStEUy%2FDdhUfELee1enNmob8dhe476bYnW1CJJPVV%2B0w32T2Lk71Z37xFxX5xcwuFg2%2FBwE4SfTrZAGBNikp91yD8ZnJ96xLwQusRNBvHmnB8uF%2F%2Fc3yoHLXnTnCQNdJkfwGphmbGreluCjdC9ss%2FBuLj%2BrbH7ZR8mx4DZXsq72BQ%3D%3D text/plain;charset=UTF-8 0 - 200 273 application/json 192.6495ms
+INFO  2022-03-23 21:51:49,847 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET https://localhost:44311/signalr?enc_auth_token=wNYmO41%2F48SHNstaLVXxHCCre29BZQl1NhC6NM3R3rzpXtPQxVzH6jEzA%2FQhXFN5tu6Fk7pO53uppm1mVXMZgxbyRVz26dnepi%2FFyB6axBY%2B6gq1GL%2BuRQgoiFUCjRN2p8w6LevViwKlHyWZZJZO1DGVSjAi1m2U%2Bog9pkHw9%2FQR4Nl%2FDPnoP9JYDMpZ1zxx09u6s0GZ9%2FQ5Sjk%2BL0UfcSCbl38X8he5w9UIn%2FHvxh7ysM1CiPLsoOwtbiieSRVmrmt0JjnipAn4%2FK283F8GrGwzwgehWsqefmUnM0ckMwNfOaJqxA4FdQOAkJd5W%2BXxvn0EW4DBPN18ygT5%2BVHg%2FBfrxQkJ4UKKwiuVhh2SKEoUj%2BsWMTcim5KzmTV5hgWiwaZNep8bK%2FjqBz4S%2FwGeE91KUq37jJprzeWe0QJ5CQu8i7cFzbvTf7kikmp2KOq%2BV2qEiECQkP1wf3jgQxfoYgzoufnBo1%2BZGZV5cwWl3RajG7ZvqJvB2Exhw%2BTPvD9r4rUIuwG0AOadYyQ%2BAPNCzrItV4RBWVaMEOY0vd%2FJTLazjPAitEtBcbdZTr5a6yY3HoeLrXe%2FLNgNYv4jtfCDIHk%2FSzqReyHOSMOxCKWsNueCOb%2FabPlMTBj6GfqcJmLGbIzJLagy2aSh9AnhYv8Qlp%2FdYoHvL5l%2F73xWIoOIC7gUhx15KSiNcbJosiNoKH%2BurXpw0KmJMSbsYndjxfVOodG%2B95xL4VbCYW43FzhwuakMnj0Js99Q4VmyAzCEU9N%2Fa%2FtjUqhM9W7AQ4dW2zyqCBsrB6mQppHUjeQemWYI5Wa%2FuX9yuhSE%2BoVqIktXsy83%2FLZyENZnBam1OZlKL%2FvHzTW1nJMsN3Naiv0VPY4dMKStEUy%2FDdhUfELee1enNmob8dhe476bYnW1CJJPVV%2B0w32T2Lk71Z37xFxX5xcwuFg2%2FBwE4SfTrZAGBNikp91yD8ZnJ96xLwQusRNBvHmnB8uF%2F%2Fc3yoHLXnTnCQNdJkfwGphmbGreluCjdC9ss%2FBuLj%2BrbH7ZR8mx4DZXsq72BQ%3D%3D&id=7LygfIJNeI_LS9xUuhKCkw - -
+INFO  2022-03-23 21:51:49,847 [8    ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2022-03-23 21:51:49,847 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/2 GET https://localhost:44311/AntiForgery/SetCookie - -
+INFO  2022-03-23 21:51:49,848 [10   ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+INFO  2022-03-23 21:51:49,848 [10   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Books.Web.Host.Controllers.AntiForgeryController.SetCookie (Books.Web.Host)'
+INFO  2022-03-23 21:51:49,848 [8    ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+INFO  2022-03-23 21:51:49,849 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint '/signalr'
+INFO  2022-03-23 21:51:49,869 [14   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/2 GET https://localhost:44311/swagger/v1/swagger.json - -
+INFO  2022-03-23 21:51:49,870 [14   ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+INFO  2022-03-23 21:51:49,883 [10   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "SetCookie", controller = "AntiForgery", area = ""}. Executing controller action with signature Void SetCookie() on controller Books.Web.Host.Controllers.AntiForgeryController (Books.Web.Host).
+INFO  2022-03-23 21:51:49,914 [10   ] osoft.EntityFrameworkCore.Infrastructure - Entity Framework Core 5.0.10 initialized 'BooksDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+DEBUG 2022-03-23 21:51:49,941 [9    ] Abp.AspNetCore.SignalR.Hubs.AbpCommonHub - A client is connected: {"ConnectionId":"7LygfIJNeI_LS9xUuhKCkw","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2022-03-23T21:51:49.8659908+02:00","Properties":{}}
+INFO  2022-03-23 21:51:49,970 [14   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished HTTP/2 GET https://localhost:44311/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 101.0355ms
+INFO  2022-03-23 21:51:50,018 [10   ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (2ms) [Parameters=[@p0='?' (Size = 512), @p1='?' (Size = 64), @p2='?' (Size = 128), @p3='?' (Size = 2000), @p4='?' (Size = 2000), @p5='?' (Size = 1024), @p6='?' (DbType = Int32), @p7='?' (DbType = DateTime2), @p8='?' (DbType = Int32), @p9='?' (DbType = Int64), @p10='?' (Size = 256), @p11='?' (Size = 1024), @p12='?' (Size = 4000), @p13='?' (Size = 256), @p14='?' (DbType = Int32), @p15='?' (DbType = Int64)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [AbpAuditLogs] ([BrowserInfo], [ClientIpAddress], [ClientName], [CustomData], [Exception], [ExceptionMessage], [ExecutionDuration], [ExecutionTime], [ImpersonatorTenantId], [ImpersonatorUserId], [MethodName], [Parameters], [ReturnValue], [ServiceName], [TenantId], [UserId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15);
+SELECT [Id]
+FROM [AbpAuditLogs]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+INFO  2022-03-23 21:51:50,051 [10   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2022-03-23 21:51:50,065 [10   ] c.Infrastructure.ControllerActionInvoker - Executed action Books.Web.Host.Controllers.AntiForgeryController.SetCookie (Books.Web.Host) in 178.7888ms
+INFO  2022-03-23 21:51:50,066 [10   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Books.Web.Host.Controllers.AntiForgeryController.SetCookie (Books.Web.Host)'
+INFO  2022-03-23 21:51:50,068 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished HTTP/2 GET https://localhost:44311/AntiForgery/SetCookie - - - 200 101 application/json;+charset=utf-8 220.4231ms
+INFO  2022-03-23 21:51:52,771 [10   ] osoft.EntityFrameworkCore.Infrastructure - Entity Framework Core 5.0.10 initialized 'BooksDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+INFO  2022-03-23 21:51:52,779 [10   ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (0ms) [Parameters=[@__p_1='?' (DbType = Int32), @__Now_0='?' (DbType = DateTime2)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(@__p_1) [a].[Id], [a].[CreationTime], [a].[CreatorUserId], [a].[IsAbandoned], [a].[JobArgs], [a].[JobType], [a].[LastTryTime], [a].[NextTryTime], [a].[Priority], [a].[TryCount]
+FROM [AbpBackgroundJobs] AS [a]
+WHERE ([a].[IsAbandoned] <> CAST(1 AS bit)) AND ([a].[NextTryTime] <= @__Now_0)
+ORDER BY [a].[Priority] DESC, [a].[TryCount], [a].[NextTryTime]
+INFO  2022-03-23 21:51:57,784 [13   ] osoft.EntityFrameworkCore.Infrastructure - Entity Framework Core 5.0.10 initialized 'BooksDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+INFO  2022-03-23 21:51:57,785 [13   ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (0ms) [Parameters=[@__p_1='?' (DbType = Int32), @__Now_0='?' (DbType = DateTime2)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(@__p_1) [a].[Id], [a].[CreationTime], [a].[CreatorUserId], [a].[IsAbandoned], [a].[JobArgs], [a].[JobType], [a].[LastTryTime], [a].[NextTryTime], [a].[Priority], [a].[TryCount]
+FROM [AbpBackgroundJobs] AS [a]
+WHERE ([a].[IsAbandoned] <> CAST(1 AS bit)) AND ([a].[NextTryTime] <= @__Now_0)
+ORDER BY [a].[Priority] DESC, [a].[TryCount], [a].[NextTryTime]
+INFO  2022-03-23 21:52:02,793 [5    ] osoft.EntityFrameworkCore.Infrastructure - Entity Framework Core 5.0.10 initialized 'BooksDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+INFO  2022-03-23 21:52:02,794 [5    ] oft.EntityFrameworkCore.Database.Command - Executed DbCommand (0ms) [Parameters=[@__p_1='?' (DbType = Int32), @__Now_0='?' (DbType = DateTime2)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(@__p_1) [a].[Id], [a].[CreationTime], [a].[CreatorUserId], [a].[IsAbandoned], [a].[JobArgs], [a].[JobType], [a].[LastTryTime], [a].[NextTryTime], [a].[Priority], [a].[TryCount]
+FROM [AbpBackgroundJobs] AS [a]
+WHERE ([a].[IsAbandoned] <> CAST(1 AS bit)) AND ([a].[NextTryTime] <= @__Now_0)
+ORDER BY [a].[Priority] DESC, [a].[TryCount], [a].[NextTryTime]
