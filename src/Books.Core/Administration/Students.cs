@@ -19,9 +19,6 @@ namespace Books.Administration
         public string NameAr { get; set; }
         public string FamilyNameAr { get; set; }
 
-        [ForeignKey("User")]
-        public long UserId { get; set; }
-
-        public User User { get; set; }
+        
     }
 }
