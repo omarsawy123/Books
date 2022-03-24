@@ -16,7 +16,15 @@ namespace Books.EntityFrameworkCore
         {
         }
 
-
         public DbSet<Students> Students { get; set; }
+        public DbSet<AcademicGradeBooks> AcademicGradeBooks { get; set; }
+        public DbSet<AcademicGradeClasses> AcademicGradeClasses { get; set; }
+        public DbSet<AcademicStudents> AcademicStudents { get; set; }
+        public DbSet<AcademicYears> AcademicYears { get; set; }
+        public DbSet<Classes> Classes { get; set; }
+        public DbSet<Grades> Grades { get; set; }
+        public DbSet<Publishers> Publishers { get; set; }
+        public DbSet<StudentBooks> StudentBooks { get; set; }
+        public DbSet<StudentSelectedBooks> StudentSelectedBooks { get; set; }
     }
 }

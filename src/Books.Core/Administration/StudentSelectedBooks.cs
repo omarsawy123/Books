@@ -9,19 +9,17 @@ using System.Threading.Tasks;
 
 namespace Books.Administration
 {
-    [Table("Students")]
-    public class Students: FullAuditedEntity
+    [Table("StudentSelectedBooks")]
+    public class StudentSelectedBooks : FullAuditedEntity
     {
-        public string StudentCode { get; set; }
-        public string Name { get; set; }
-    
-        public string FamilyName { get; set; }
-        public string NameAr { get; set; }
-        public string FamilyNameAr { get; set; }
-
         [ForeignKey("User")]
         public long UserId { get; set; }
-
         public User User { get; set; }
+
+        [ForeignKey("Student")]
+        public int StudentId { get; set; }
+        public Students Student { get; set; }
+
+        public IList<StudentBooks> Books { get; set; }
     }
 }
