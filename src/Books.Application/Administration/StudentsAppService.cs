@@ -75,5 +75,34 @@ namespace Books.StudentsAppServices
 
             return result;
         }
+
+
+        public async void UpdateStudentsUserId()
+        {
+
+            var result = from s in _repository.GetAll()
+                         join u in _users.GetAll() on
+                         s.Name + ' ' + s.FamilyName equals u.Name
+                         select new
+                         {
+                             userid = u.Id,
+                             name = s.Name + ' ' + s.FamilyName
+                         };
+
+            foreach (var item in _repository.GetAll())
+            {
+                var check = result.
+                     Where(r => r.name == item.Name + ' ' + item.FamilyName).Any();
+                if(check)
+                {
+                    item.UserId = result.Where(r => r.name == item.Name + ' ' + item.FamilyName)
+                                        .FirstOrDefault().userid;
+                    await _repository.UpdateAsync(item);
+                }
+               
+                
+
+            }
+        }
     }
 }
