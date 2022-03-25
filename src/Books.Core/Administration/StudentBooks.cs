@@ -21,9 +21,9 @@ namespace Books.Administration
         public decimal Price { get; set; }
 
 
-        [ForeignKey("AcademicGradeBook")]
-        public int AcademicGradeBookId { get; set; }
-        public AcademicGradeBooks AcademicGradeBook { get; set; }
+        //[ForeignKey("AcademicGradeBook")]
+        //public int AcademicGradeBookId { get; set; }
+        //public AcademicGradeBooks AcademicGradeBook { get; set; }
 
 
     }

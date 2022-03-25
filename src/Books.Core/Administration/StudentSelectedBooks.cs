@@ -20,6 +20,8 @@ namespace Books.Administration
         public int StudentId { get; set; }
         public Students Student { get; set; }
 
-        public IList<StudentBooks> Books { get; set; }
+        [ForeignKey("Books")]
+        public int BookId { get; set; }
+        public StudentBooks Books { get; set; }
     }
 }

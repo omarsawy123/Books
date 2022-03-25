@@ -29,6 +29,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Books.EntityFrameworkCore\Books.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\Books.Web.Core\Books.Web.Core.csproj" />
   </ItemGroup>
   <ItemGroup>

@@ -1651,9 +1651,6 @@ namespace Books.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AcademicGradeBookId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
@@ -1705,18 +1702,11 @@ namespace Books.Migrations
                     b.Property<int>("SortOrder")
                         .HasColumnType("int");
 
-                    b.Property<int?>("StudentSelectedBooksId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("AcademicGradeBookId");
 
                     b.HasIndex("GradesId");
 
                     b.HasIndex("PublishersId");
-
-                    b.HasIndex("StudentSelectedBooksId");
 
                     b.ToTable("StudentBooks");
                 });
@@ -1727,6 +1717,9 @@ namespace Books.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
@@ -1756,6 +1749,8 @@ namespace Books.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BookId");
 
                     b.HasIndex("StudentId");
 
@@ -2337,12 +2332,6 @@ namespace Books.Migrations
 
             modelBuilder.Entity("Books.Administration.StudentBooks", b =>
                 {
-                    b.HasOne("Books.Administration.AcademicGradeBooks", "AcademicGradeBook")
-                        .WithMany()
-                        .HasForeignKey("AcademicGradeBookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Books.Administration.Grades", null)
                         .WithMany("Books")
                         .HasForeignKey("GradesId");
@@ -2350,16 +2339,16 @@ namespace Books.Migrations
                     b.HasOne("Books.Administration.Publishers", null)
                         .WithMany("Books")
                         .HasForeignKey("PublishersId");
-
-                    b.HasOne("Books.Administration.StudentSelectedBooks", null)
-                        .WithMany("Books")
-                        .HasForeignKey("StudentSelectedBooksId");
-
-                    b.Navigation("AcademicGradeBook");
                 });
 
             modelBuilder.Entity("Books.Administration.StudentSelectedBooks", b =>
                 {
+                    b.HasOne("Books.Administration.StudentBooks", "Books")
+                        .WithMany()
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Books.Administration.Students", "Student")
                         .WithMany()
                         .HasForeignKey("StudentId")
@@ -2371,6 +2360,8 @@ namespace Books.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Books");
 
                     b.Navigation("Student");
 
@@ -2517,11 +2508,6 @@ namespace Books.Migrations
                 });
 
             modelBuilder.Entity("Books.Administration.Publishers", b =>
-                {
-                    b.Navigation("Books");
-                });
-
-            modelBuilder.Entity("Books.Administration.StudentSelectedBooks", b =>
                 {
                     b.Navigation("Books");
                 });

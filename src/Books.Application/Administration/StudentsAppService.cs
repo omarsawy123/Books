@@ -8,24 +8,29 @@ using Abp.Domain.Repositories;
 using Books.Administration;
 using Books.Administration.Dto;
 using Books.Authorization.Users;
+using Books.EntityFrameworkCore;
 
 namespace Books.StudentsAppServices
 {
     public  class StudentsAppService: AsyncCrudAppService<Students, StudentsDto>
     {
 
-        private readonly IRepository<Students> _repository;
+        private readonly IRepository<Students,int> _repository;
         private readonly IRepository<User,long> _users;
         private readonly IRepository<AcademicStudents> _academicStudents;
         private readonly IRepository<AcademicGradeClasses> _academicGradeClasses;
         private readonly IRepository<Grades> _grades;
+  
 
 
 
 
-        public StudentsAppService(IRepository<Students> repository, IRepository<User, long> users, IRepository<AcademicStudents> academicStudents,
+
+        public StudentsAppService(IRepository<Students,int> repository, IRepository<User, long> users, IRepository<AcademicStudents> academicStudents,
              IRepository<AcademicGradeClasses> academicGradeClasses,
              IRepository<Grades> grades
+    
+
             )
         : base(repository)
         {
@@ -34,6 +39,7 @@ namespace Books.StudentsAppServices
             _academicStudents = academicStudents;  
             _academicGradeClasses = academicGradeClasses;
             _grades = grades;
+           
         }
 
 
@@ -80,24 +86,26 @@ namespace Books.StudentsAppServices
         public async void UpdateStudentsUserId()
         {
 
-            var result = from s in _repository.GetAll()
-                         join u in _users.GetAll() on
-                         s.Name + ' ' + s.FamilyName equals u.Name
-                         select new
-                         {
-                             userid = u.Id,
-                             name = s.Name + ' ' + s.FamilyName
-                         };
+            var result = (from s in _repository.GetAll()
+                          join u in _users.GetAll() on
+                          s.Name + ' ' + s.FamilyName equals u.Name
+                          select new
+                          {
+                              userid = u.Id,
+                              name = s.Name + ' ' + s.FamilyName
+                          }).ToList();
 
-            foreach (var item in _repository.GetAll())
+
+            foreach (var item in _repository.GetAll().ToList())
             {
                 var check = result.
-                     Where(r => r.name == item.Name + ' ' + item.FamilyName).Any();
+                     Where(r => r.name==item.Name + ' ' + item.FamilyName).Any();
                 if(check)
                 {
-                    item.UserId = result.Where(r => r.name == item.Name + ' ' + item.FamilyName)
+                    item.UserId = result.Where(r => r.name==item.Name+' '+item.FamilyName)
                                         .FirstOrDefault().userid;
-                    await _repository.UpdateAsync(item);
+                     _repository.Update(item);
+                    //_context.SaveChanges();
                 }
                
                 
