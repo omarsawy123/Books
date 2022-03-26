@@ -101,6 +101,30 @@ namespace Books.StudentsAppServices
             return result;
         }
 
+        public void MergeBooks()
+        {
+
+            var students = (from b in _books.GetAll()
+                            join ac in _academicGradeBooks.GetAll()
+                            on b.Id equals ac.BookId
+                            join st in _selectedBooks.GetAll()
+                            on ac.Id equals st.AcademicGradeBook.BookId
+                            //into studs
+                            //from st in studs.DefaultIfEmpty()
+                            select new
+                            {
+                                Bookname = b.Name,
+                                mandatory = b.IsMandatory,
+                                Id = st == null ? 0 : st.Id
+
+
+                            }).ToList();
+                
+
+
+        }
+
+
         public void UpdateStudentSelectedBooks()
         {
 
@@ -111,7 +135,7 @@ namespace Books.StudentsAppServices
                             from x in allB.DefaultIfEmpty()
                             join pu in _publisher.GetAll() on agc.PublisherId equals pu.Id
                             join grd in _grades.GetAll() on agc.GradeId equals grd.Id
-                            join std in _studentMandatoryBooks.GetAll() on agc.Id equals std.AcademicGradeBookId
+                            //join std in _studentMandatoryBooks.GetAll() on agc.Id equals std.AcademicGradeBookId
                             select new SelectedBooksDto
                             {
                                 BookId = x.Id,
