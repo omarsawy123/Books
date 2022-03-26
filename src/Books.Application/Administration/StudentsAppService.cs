@@ -19,8 +19,11 @@ namespace Books.StudentsAppServices
         private readonly IRepository<User,long> _users;
         private readonly IRepository<AcademicStudents> _academicStudents;
         private readonly IRepository<AcademicGradeClasses> _academicGradeClasses;
+        private readonly IRepository<AcademicGradeBooks> _academicGradeBooks;
         private readonly IRepository<Grades> _grades;
-  
+        private readonly IRepository<StudentSelectedBooks> _selectedBooks;
+
+
 
 
 
@@ -28,8 +31,10 @@ namespace Books.StudentsAppServices
 
         public StudentsAppService(IRepository<Students,int> repository, IRepository<User, long> users, IRepository<AcademicStudents> academicStudents,
              IRepository<AcademicGradeClasses> academicGradeClasses,
-             IRepository<Grades> grades
-    
+             IRepository<Grades> grades,
+             IRepository<StudentSelectedBooks> selectedBooks,
+             IRepository<AcademicGradeBooks> academicGradeBooks
+
 
             )
         : base(repository)
@@ -39,6 +44,8 @@ namespace Books.StudentsAppServices
             _academicStudents = academicStudents;  
             _academicGradeClasses = academicGradeClasses;
             _grades = grades;
+            _selectedBooks = selectedBooks;
+            _academicGradeBooks = academicGradeBooks;   
            
         }
 
@@ -82,35 +89,53 @@ namespace Books.StudentsAppServices
             return result;
         }
 
-
-        public async void UpdateStudentsUserId()
+        public void UpdateStudentSelectedBooks()
         {
 
-            var result = (from s in _repository.GetAll()
-                          join u in _users.GetAll() on
-                          s.Name + ' ' + s.FamilyName equals u.Name
-                          select new
-                          {
-                              userid = u.Id,
-                              name = s.Name + ' ' + s.FamilyName
-                          }).ToList();
+            //var students = (from st in _selectedBooks.GetAll().Where(s=>s.StudentId == 493)
+            //                join b in _academicGradeBooks.GetAll()
+            //                on st.AcademicGradeBook.GradeId equals b.GradeId
+            //                into mand
+            //                from m in mand.DefaultIfEmpty()
+            //                select new
+            //                {
+            //                    book = m.Book.Name,
+            //                    grade = m.Grade.Name,
+            //                    isSelected=st.IsSelected,
+            //                    mandatory = m.Book.IsMandatory
+            //                }
+            //     ).ToList();
+
+        }
+
+        //public async void UpdateStudentsUserId()
+        //{
+
+        //    var result = (from s in _repository.GetAll()
+        //                  join u in _users.GetAll() on
+        //                  s.Name + ' ' + s.FamilyName equals u.Name
+        //                  select new
+        //                  {
+        //                      userid = u.Id,
+        //                      name = s.Name + ' ' + s.FamilyName
+        //                  }).ToList();
 
 
-            foreach (var item in _repository.GetAll().ToList())
-            {
-                var check = result.
-                     Where(r => r.name==item.Name + ' ' + item.FamilyName).Any();
-                if(check)
-                {
-                    item.UserId = result.Where(r => r.name==item.Name+' '+item.FamilyName)
-                                        .FirstOrDefault().userid;
-                     _repository.Update(item);
-                    //_context.SaveChanges();
-                }
+        //    foreach (var item in _repository.GetAll().ToList())
+        //    {
+        //        var check = result.
+        //             Where(r => r.name==item.Name + ' ' + item.FamilyName).Any();
+        //        if(check)
+        //        {
+        //            item.UserId = result.Where(r => r.name==item.Name+' '+item.FamilyName)
+        //                                .FirstOrDefault().userid;
+        //             _repository.Update(item);
+        //            //_context.SaveChanges();
+        //        }
                
                 
 
-            }
-        }
+        //    }
+        //}
     }
 }

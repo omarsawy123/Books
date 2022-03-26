@@ -1718,7 +1718,10 @@ namespace Books.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BookId")
+                    b.Property<int>("AcademicGradeBookId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AcademicGradeClassId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreationTime")
@@ -1736,6 +1739,9 @@ namespace Books.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsSelected")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime2");
 
@@ -1750,7 +1756,9 @@ namespace Books.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BookId");
+                    b.HasIndex("AcademicGradeBookId");
+
+                    b.HasIndex("AcademicGradeClassId");
 
                     b.HasIndex("StudentId");
 
@@ -2343,9 +2351,15 @@ namespace Books.Migrations
 
             modelBuilder.Entity("Books.Administration.StudentSelectedBooks", b =>
                 {
-                    b.HasOne("Books.Administration.StudentBooks", "Books")
+                    b.HasOne("Books.Administration.AcademicGradeBooks", "AcademicGradeBook")
                         .WithMany()
-                        .HasForeignKey("BookId")
+                        .HasForeignKey("AcademicGradeBookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Books.Administration.AcademicGradeClasses", "AcademicGradeClass")
+                        .WithMany()
+                        .HasForeignKey("AcademicGradeClassId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -2361,7 +2375,9 @@ namespace Books.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Books");
+                    b.Navigation("AcademicGradeBook");
+
+                    b.Navigation("AcademicGradeClass");
 
                     b.Navigation("Student");
 

@@ -20,8 +20,14 @@ namespace Books.Administration
         public int StudentId { get; set; }
         public Students Student { get; set; }
 
-        [ForeignKey("Books")]
-        public int BookId { get; set; }
-        public StudentBooks Books { get; set; }
+        [ForeignKey("AcademicGradeBook")]
+        public int AcademicGradeBookId { get; set; }
+        public AcademicGradeBooks AcademicGradeBook { get; set; }
+        public bool IsSelected { get; set; }
+
+        [ForeignKey("AcademicGradeClass")]
+        public int AcademicGradeClassId { get; set; }
+        public AcademicGradeClasses AcademicGradeClass { get; set; }
+
     }
 }
