@@ -1711,6 +1711,54 @@ namespace Books.Migrations
                     b.ToTable("StudentBooks");
                 });
 
+            modelBuilder.Entity("Books.Administration.StudentMandatoryBooks", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AcademicGradeBookId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AcademicGradeBookId");
+
+                    b.HasIndex("StudentId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("StudentMandatoryBooks");
+                });
+
             modelBuilder.Entity("Books.Administration.StudentSelectedBooks", b =>
                 {
                     b.Property<int>("Id")
@@ -2347,6 +2395,33 @@ namespace Books.Migrations
                     b.HasOne("Books.Administration.Publishers", null)
                         .WithMany("Books")
                         .HasForeignKey("PublishersId");
+                });
+
+            modelBuilder.Entity("Books.Administration.StudentMandatoryBooks", b =>
+                {
+                    b.HasOne("Books.Administration.AcademicGradeBooks", "AcademicGradeBook")
+                        .WithMany()
+                        .HasForeignKey("AcademicGradeBookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Books.Administration.Students", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Books.Authorization.Users.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AcademicGradeBook");
+
+                    b.Navigation("Student");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Books.Administration.StudentSelectedBooks", b =>

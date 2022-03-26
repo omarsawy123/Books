@@ -23,6 +23,10 @@ namespace Books.StudentsAppServices
         private readonly IRepository<Grades> _grades;
         private readonly IRepository<StudentSelectedBooks> _selectedBooks;
         private readonly IRepository<StudentBooks> _books;
+        private readonly IRepository<Publishers> _publisher;
+        private readonly IRepository<StudentMandatoryBooks> _studentMandatoryBooks;
+
+
 
 
 
@@ -36,7 +40,9 @@ namespace Books.StudentsAppServices
              IRepository<Grades> grades,
              IRepository<StudentSelectedBooks> selectedBooks,
              IRepository<AcademicGradeBooks> academicGradeBooks,
-             IRepository<StudentBooks> books
+             IRepository<StudentBooks> books,
+             IRepository<Publishers> publisher,
+             IRepository<StudentMandatoryBooks> studentMandatoryBooks
 
 
             )
@@ -50,6 +56,8 @@ namespace Books.StudentsAppServices
             _selectedBooks = selectedBooks;
             _academicGradeBooks = academicGradeBooks;   
             _books = books; 
+            _publisher= publisher;  
+            _studentMandatoryBooks= studentMandatoryBooks;
            
         }
 
@@ -99,12 +107,40 @@ namespace Books.StudentsAppServices
             var students = (from s in _selectedBooks.GetAll().Where(s => s.IsSelected)
                             join agc in _academicGradeBooks.GetAll() on s.AcademicGradeBookId equals agc.Id
                             join b in _books.GetAll() on agc.BookId equals b.Id
-                            into bman
-                            from x in bman
-                            select x
+                            into allB
+                            from x in allB.DefaultIfEmpty()
+                            join pu in _publisher.GetAll() on agc.PublisherId equals pu.Id
+                            join grd in _grades.GetAll() on agc.GradeId equals grd.Id
+                            join std in _studentMandatoryBooks.GetAll() on agc.Id equals std.AcademicGradeBookId
+                            select new SelectedBooksDto
+                            {
+                                BookId = x.Id,
+                                BookName = x.Name,
+                                BookGradeName = grd.Name,
+                                BookGradeId = grd.Id,
+                                PublihserName = pu.Name,
+                                IsMandatory = x.IsMandatory,
+                                IsPrevious = x.IsPreviousYear,
+                                StudentId = s.StudentId,
+                            }
                             ).ToList();
 
-            List<SelectedBooksDto> books = new List<SelectedBooksDto>();
+            //var MandatoryBooks = (from b in _books.GetAll().Where(b => b.IsMandatory)
+            //                      join agc in _academicGradeBooks.GetAll()
+            //                      on b.Id equals agc.BookId
+            //                      select new
+            //                      {
+            //                          BookId = b.Id,
+            //                          BookName = b.Name,
+            //                          IsMandatory = b.IsMandatory,
+            //                          BookGradeId = agc.GradeId
+            //                      }
+            //                     ).ToList();
+
+            //foreach (var stud in students.Select(s => s.StudentId).Distinct())
+            //{
+            //    MandatoryBooks.Where()
+            //}
 
             //foreach (var stud in students)
             //{
@@ -136,7 +172,7 @@ namespace Books.StudentsAppServices
             //{
             //    mandBooks= _academicGradeBooks.GetAll().Where(a => a.GradeId == student && a.Book.IsMandatory).ToList();
 
-                
+
             //}
         }
 
@@ -164,8 +200,8 @@ namespace Books.StudentsAppServices
         //             _repository.Update(item);
         //            //_context.SaveChanges();
         //        }
-               
-                
+
+
 
         //    }
         //}

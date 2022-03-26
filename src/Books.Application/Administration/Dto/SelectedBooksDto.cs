@@ -15,6 +15,8 @@ namespace Books.Administration.Dto
         public bool IsPrevious { get; set; }
         public string PublihserName { get; set; }
         public string BookGradeName { get; set; }
+        public int BookGradeId { get; set; }
+        public int StudentId { get; set; }
 
     }
 }

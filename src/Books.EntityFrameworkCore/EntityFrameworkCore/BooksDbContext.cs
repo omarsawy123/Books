@@ -26,5 +26,7 @@ namespace Books.EntityFrameworkCore
         public DbSet<Publishers> Publishers { get; set; }
         public DbSet<StudentBooks> StudentBooks { get; set; }
         public DbSet<StudentSelectedBooks> StudentSelectedBooks { get; set; }
+        public DbSet<StudentMandatoryBooks> StudentMandatoryBooks { get; set; }
+
     }
 }
