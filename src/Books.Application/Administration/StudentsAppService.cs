@@ -22,6 +22,8 @@ namespace Books.StudentsAppServices
         private readonly IRepository<AcademicGradeBooks> _academicGradeBooks;
         private readonly IRepository<Grades> _grades;
         private readonly IRepository<StudentSelectedBooks> _selectedBooks;
+        private readonly IRepository<StudentBooks> _books;
+
 
 
 
@@ -33,7 +35,8 @@ namespace Books.StudentsAppServices
              IRepository<AcademicGradeClasses> academicGradeClasses,
              IRepository<Grades> grades,
              IRepository<StudentSelectedBooks> selectedBooks,
-             IRepository<AcademicGradeBooks> academicGradeBooks
+             IRepository<AcademicGradeBooks> academicGradeBooks,
+             IRepository<StudentBooks> books
 
 
             )
@@ -46,6 +49,7 @@ namespace Books.StudentsAppServices
             _grades = grades;
             _selectedBooks = selectedBooks;
             _academicGradeBooks = academicGradeBooks;   
+            _books = books; 
            
         }
 
@@ -92,20 +96,48 @@ namespace Books.StudentsAppServices
         public void UpdateStudentSelectedBooks()
         {
 
-            //var students = (from st in _selectedBooks.GetAll().Where(s=>s.StudentId == 493)
-            //                join b in _academicGradeBooks.GetAll()
-            //                on st.AcademicGradeBook.GradeId equals b.GradeId
-            //                into mand
-            //                from m in mand.DefaultIfEmpty()
-            //                select new
-            //                {
-            //                    book = m.Book.Name,
-            //                    grade = m.Grade.Name,
-            //                    isSelected=st.IsSelected,
-            //                    mandatory = m.Book.IsMandatory
-            //                }
-            //     ).ToList();
+            var students = (from s in _selectedBooks.GetAll().Where(s => s.IsSelected)
+                            join agc in _academicGradeBooks.GetAll() on s.AcademicGradeBookId equals agc.Id
+                            join b in _books.GetAll() on agc.BookId equals b.Id
+                            into bman
+                            from x in bman
+                            select x
+                            ).ToList();
 
+            List<SelectedBooksDto> books = new List<SelectedBooksDto>();
+
+            //foreach (var stud in students)
+            //{
+            //    var book = new SelectedBooksDto();
+
+            //    book.BookName = _academicGradeBooks.FirstOrDefault(b => b.Id == stud.AcademicGradeBookId);
+            //    book.BookId = stud.AcademicGradeBook.Book.Id;
+            //    book.BookGradeName = stud.AcademicGradeBook.Grade.Name;
+            //    book.IsSelected=stud.IsSelected;
+            //    book.IsMandatory = stud.AcademicGradeBook.Book.IsMandatory;
+            //    book.PublihserName=stud.AcademicGradeBook.Publisher.Name;
+            //    book.IsPrevious = stud.AcademicGradeBook.Book.IsPreviousYear;
+
+            //    books.Add(book);
+
+            //}
+
+            //foreach (var item in books.Select(b=>b.BookGradeName))
+            //{
+            //    var b=_academicGradeBooks.GetAll().Where(b=>b.Grade.Name==item).ToList();
+
+            //}
+
+            //List<AcademicGradeBooks> mandBooks;
+
+            //students.ForEach(s=>s.AcademicGradeBook.GradeId)
+
+            //foreach (var student in )
+            //{
+            //    mandBooks= _academicGradeBooks.GetAll().Where(a => a.GradeId == student && a.Book.IsMandatory).ToList();
+
+                
+            //}
         }
 
         //public async void UpdateStudentsUserId()
