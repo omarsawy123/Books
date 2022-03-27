@@ -101,41 +101,17 @@ namespace Books.StudentsAppServices
             return result;
         }
 
-        public void MergeBooks()
+
+        public  void GetAllStudentSelectedBooks()
         {
 
-            var students = (from b in _books.GetAll()
-                            join ac in _academicGradeBooks.GetAll()
-                            on b.Id equals ac.BookId
-                            join st in _selectedBooks.GetAll()
-                            on ac.Id equals st.AcademicGradeBook.BookId
-                            //into studs
-                            //from st in studs.DefaultIfEmpty()
-                            select new
-                            {
-                                Bookname = b.Name,
-                                mandatory = b.IsMandatory,
-                                Id = st == null ? 0 : st.Id
-
-
-                            }).ToList();
-                
-
-
-        }
-
-
-        public void UpdateStudentSelectedBooks()
-        {
-
-            var students = (from s in _selectedBooks.GetAll().Where(s => s.IsSelected)
+            var students = (from s in _selectedBooks.GetAll()
                             join agc in _academicGradeBooks.GetAll() on s.AcademicGradeBookId equals agc.Id
                             join b in _books.GetAll() on agc.BookId equals b.Id
                             into allB
                             from x in allB.DefaultIfEmpty()
                             join pu in _publisher.GetAll() on agc.PublisherId equals pu.Id
                             join grd in _grades.GetAll() on agc.GradeId equals grd.Id
-                            //join std in _studentMandatoryBooks.GetAll() on agc.Id equals std.AcademicGradeBookId
                             select new SelectedBooksDto
                             {
                                 BookId = x.Id,
@@ -146,59 +122,48 @@ namespace Books.StudentsAppServices
                                 IsMandatory = x.IsMandatory,
                                 IsPrevious = x.IsPreviousYear,
                                 StudentId = s.StudentId,
+                                IsSelected=s.IsSelected,
                             }
                             ).ToList();
 
-            //var MandatoryBooks = (from b in _books.GetAll().Where(b => b.IsMandatory)
-            //                      join agc in _academicGradeBooks.GetAll()
-            //                      on b.Id equals agc.BookId
-            //                      select new
-            //                      {
-            //                          BookId = b.Id,
-            //                          BookName = b.Name,
-            //                          IsMandatory = b.IsMandatory,
-            //                          BookGradeId = agc.GradeId
-            //                      }
-            //                     ).ToList();
+            var MandatoryBooks = (from b in _books.GetAll().Where(b => b.IsMandatory)
+                                  join agc in _academicGradeBooks.GetAll()
+                                  on b.Id equals agc.BookId
+                                  join g in _grades.GetAll() 
+                                  on agc.GradeId equals g.Id
+                                  join p in _publisher.GetAll() on agc.PublisherId equals p.Id
+                                  //join s in _repository.GetAll() on 
 
-            //foreach (var stud in students.Select(s => s.StudentId).Distinct())
+                                  select new SelectedBooksDto
+                                  {
+                                      BookId = b.Id,
+                                      BookName = b.Name,
+                                      IsMandatory = b.IsMandatory,
+                                      BookGradeId = g.Id,
+                                      BookGradeName=g.Name,
+                                      PublihserName = p.Name,
+                                  }
+                                 ).ToList();
+            var resut = new List<SelectedBooksDto>();
+
+            students.AddRange(MandatoryBooks);
+
+            //foreach (var stud in students.GroupBy(a=>a.StudentId))
             //{
-            //    MandatoryBooks.Where()
-            //}
 
-            //foreach (var stud in students)
-            //{
-            //    var book = new SelectedBooksDto();
+            //    int GradeId = stud.FirstOrDefault().BookGradeId;
 
-            //    book.BookName = _academicGradeBooks.FirstOrDefault(b => b.Id == stud.AcademicGradeBookId);
-            //    book.BookId = stud.AcademicGradeBook.Book.Id;
-            //    book.BookGradeName = stud.AcademicGradeBook.Grade.Name;
-            //    book.IsSelected=stud.IsSelected;
-            //    book.IsMandatory = stud.AcademicGradeBook.Book.IsMandatory;
-            //    book.PublihserName=stud.AcademicGradeBook.Publisher.Name;
-            //    book.IsPrevious = stud.AcademicGradeBook.Book.IsPreviousYear;
+            //    var MandatoryValues = MandatoryBooks.Where(b => b.BookGradeId == GradeId).ToList();
+            //    int temp = stud.FirstOrDefault().StudentId;
 
-            //    books.Add(book);
+            //    MandatoryValues.ForEach(b=>b.StudentId=temp);
 
-            //}
-
-            //foreach (var item in books.Select(b=>b.BookGradeName))
-            //{
-            //    var b=_academicGradeBooks.GetAll().Where(b=>b.Grade.Name==item).ToList();
+            //    students.AddRange(MandatoryValues);
 
             //}
 
-            //List<AcademicGradeBooks> mandBooks;
-
-            //students.ForEach(s=>s.AcademicGradeBook.GradeId)
-
-            //foreach (var student in )
-            //{
-            //    mandBooks= _academicGradeBooks.GetAll().Where(a => a.GradeId == student && a.Book.IsMandatory).ToList();
-
-
-            //}
         }
+
 
         //public async void UpdateStudentsUserId()
         //{
