@@ -15,5 +15,6 @@ namespace Books.Administration.Dto
         public int  UnRegisteredStudents { get; set; }
         public int TotalStudents { get; set; }
 
+
     }
 }

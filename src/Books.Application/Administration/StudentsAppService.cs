@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Abp.Application.Services;
+using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
 using Books.Administration;
 using Books.Administration.Dto;
 using Books.Authorization.Users;
 using Books.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace Books.StudentsAppServices
 {
@@ -62,9 +64,37 @@ namespace Books.StudentsAppServices
         }
 
 
-        public List<StudentsDashBoardDto> GetStudentsForDashboard()
+        public void GetAl(PagedAndSortedResultRequestDto input)
         {
-            var result = new List<StudentsDashBoardDto>();
+
+            var query = (from s in _repository.GetAll().Where(s=>s.Id==493)
+                         join ac in _academicStudents.GetAll()
+                         on s.Id equals ac.StudentId
+                         join agc in _academicGradeClasses.GetAll()
+                         on ac.AcademicGradeClassId equals agc.Id
+                         join st in _selectedBooks.GetAll()
+                         on s.Id equals st.StudentId
+                         select new
+                         {
+                             Name=s.Name,
+                             FamilyName=s.FamilyName,
+                             NameAr=s.NameAr,
+                             FamilyNameAr=s.FamilyNameAr,
+                             GradeName=agc.Grade.Name,
+                             GradeId=agc.GradeId,
+                             ClassName=agc.Class.Name,
+                             ClassId=agc.ClassId,
+                             BookCount=_selectedBooks.GetAll().Where(s=>s.StudentId==s.StudentId).Count(),
+
+                         }
+                       ).ToList();
+
+        }
+
+        public async Task<DashBoardStatisticsDto> GetStudentsForDashboard()
+        {
+            var result =new DashBoardStatisticsDto();
+            result.StudentsDashBoard = new List<StudentsDashBoardDto>();
 
             var query = (from s in _repository.GetAll()
                                       join u in _users.GetAll() on s.UserId equals u.Id
@@ -94,7 +124,37 @@ namespace Books.StudentsAppServices
 
                 student.TotalStudents = student.UnRegisteredStudents + student.RegisteredStudents;
 
-                result.Add(student);
+                result.StudentsDashBoard.Add(student);
+            }
+
+            result.TotalRegisteredStudents= result.StudentsDashBoard.Sum(a => a.RegisteredStudents);
+
+
+            result.TotalRequiredBooks = CalculateRequiredBooks();
+
+            return result;
+        }
+
+        public int CalculateRequiredBooks()
+        {
+            int result = 0;
+            var query = (from s in _selectedBooks.GetAll().Where(s => s.IsSelected)
+                         join ac in _academicGradeBooks.GetAll()
+                         on s.AcademicGradeBookId equals ac.Id
+                         select ac
+                       ).ToList();
+
+            result = query.Count();
+            var MandBooks = _academicGradeBooks.GetAll().Where(a => a.Book.IsMandatory).ToList();
+            var AcademicStudents = _academicStudents.GetAll().Include(a => a.AcademicGradeClasses).ToList();
+
+            foreach (var book in MandBooks.GroupBy(b => b.GradeId))
+            {
+
+                var studentsGrade = AcademicStudents.Where(a => a.AcademicGradeClasses.GradeId == book.Key).Count();
+
+                result += (studentsGrade * book.Count());
+
             }
 
 
