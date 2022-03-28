@@ -18,5 +18,7 @@ namespace Books.Administration.Dto
         public int BookGradeId { get; set; }
         public int StudentId { get; set; }
 
+        public decimal BookPrice { get; set; }
+
     }
 }

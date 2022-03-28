@@ -84,7 +84,7 @@ namespace Books.StudentsAppServices
                              GradeId=agc.GradeId,
                              ClassName=agc.Class.Name,
                              ClassId=agc.ClassId,
-                             BookCount=_selectedBooks.GetAll().Where(s=>s.StudentId==s.StudentId).Count(),
+                             
 
                          }
                        ).ToList();
@@ -162,8 +162,10 @@ namespace Books.StudentsAppServices
         }
 
 
-        public  void GetAllStudentSelectedBooks()
+        public  List<StudentAllBooksDto> GetAllStudentSelectedBooks()
         {
+
+            var result = new List<StudentAllBooksDto>();
 
             var students = (from s in _selectedBooks.GetAll()
                             join agc in _academicGradeBooks.GetAll() on s.AcademicGradeBookId equals agc.Id
@@ -183,6 +185,7 @@ namespace Books.StudentsAppServices
                                 IsPrevious = x.IsPreviousYear,
                                 StudentId = s.StudentId,
                                 IsSelected=s.IsSelected,
+                                BookPrice=x.Price,
                             }
                             ).ToList();
 
@@ -202,11 +205,42 @@ namespace Books.StudentsAppServices
                                       BookGradeId = g.Id,
                                       BookGradeName=g.Name,
                                       PublihserName = p.Name,
+                                      BookPrice=b.Price
                                   }
                                  ).ToList();
-            var resut = new List<SelectedBooksDto>();
+     
 
             students.AddRange(MandatoryBooks);
+
+            var AcademicStudents= _academicStudents.GetAll().Include(a=>a.Student).Include(a=>a.AcademicGradeClasses).Include(a=>a.AcademicGradeClasses.Grade).
+                Include(a => a.AcademicGradeClasses.Class).ToList();
+
+            foreach (var stud in AcademicStudents)
+            {
+                var item = new StudentAllBooksDto();
+
+                item.Id = stud.Student.Id;
+                item.Name= stud.Student.Name;
+                item.NameAr = stud.Student.NameAr;
+                item.FamilyName = stud.Student.FamilyName;
+                item.FamilyNameAr= stud.Student.FamilyNameAr;
+                item.GradeId = (int)stud.AcademicGradeClasses.GradeId;
+                item.GradeName = stud.AcademicGradeClasses.Grade.Name;
+                item.ClassId = (int)stud.AcademicGradeClasses.ClassId;
+                item.ClassName = stud.AcademicGradeClasses.Class.Name;
+
+                item.SelectedBooks = students.Where(a => a.StudentId == stud.Student.Id || (a.BookGradeId == stud.AcademicGradeClasses.GradeId && a.IsMandatory)).ToList();
+
+                item.SelectedBooksCount = item.SelectedBooks.Count;
+
+                item.SelectedBooksTotal = item.SelectedBooks.Sum(b => b.BookPrice);
+
+                result.Add(item);
+                
+            }
+
+            var test = result.Where(s => s.Id == 493).FirstOrDefault();
+            return result;
 
             //foreach (var stud in students.GroupBy(a=>a.StudentId))
             //{
