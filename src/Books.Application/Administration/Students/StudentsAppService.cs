@@ -12,7 +12,7 @@ using Books.Authorization.Users;
 using Books.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Books.StudentsAppServices
+namespace Books.Administration.StudentsAppServices
 {
     public  class StudentsAppService: AsyncCrudAppService<Students, StudentsDto>
     {

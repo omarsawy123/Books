@@ -4,6 +4,7 @@ using Abp.Domain.Repositories;
 using Abp.Extensions;
 using Abp.Linq.Extensions;
 using Books.Administration.Books.Dto;
+using Books.Administration.StudentsAppServices;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -19,13 +20,24 @@ namespace Books.Administration.Books
 
         private readonly IRepository<StudentBooks,int> _studentBooks;
         private readonly IRepository<AcademicGradeBooks, int> _academicGradeBooks;
+        private readonly IRepository<StudentSelectedBooks, int> _selectedBooks;
+        private readonly IRepository<AcademicStudents, int> _academicStudents;
 
 
 
-        public BooksAppService(IRepository<StudentBooks, int> studentBooks, IRepository<AcademicGradeBooks, int> academicGradeBooks) :base(studentBooks)
+
+
+
+        public BooksAppService(IRepository<StudentBooks, int> studentBooks
+            , IRepository<AcademicGradeBooks, int> academicGradeBooks,
+            IRepository<StudentSelectedBooks, int> selectedBooks,
+            IRepository<AcademicStudents, int> academicStudents) 
+            :base(studentBooks)
         {
             _studentBooks=  studentBooks;
             _academicGradeBooks= academicGradeBooks;    
+            _selectedBooks= selectedBooks;
+            _academicStudents= academicStudents;
         }
 
 
@@ -39,9 +51,12 @@ namespace Books.Administration.Books
                                a=>a.Isbn.Contains(input.filter)||
                                a.Name.Contains(input.filter)||
                                a.Price.ToString().Contains(input.filter))
-                               join ac in _academicGradeBooks.GetAll().Include(a => a.Grade)
+
+                               join ac in _academicGradeBooks.GetAll()
+                               .Include(a => a.Grade).Include(a=>a.Publisher)
                                .WhereIf(input.gradId!=0,a=>a.GradeId==input.gradId)
                                on b.Id equals ac.BookId
+                             
                                select new BooksDto
                                {
                                    Id=b.Id,
@@ -53,10 +68,13 @@ namespace Books.Administration.Books
                                    IsMandatory=b.IsMandatory,
                                    IsPrevoius=b.IsPreviousYear,
                                    IsAdditional=b.IsAdditional,
+                                   PublisherName=ac.Publisher.Name,
+
                                }
                        ).ToListAsync();
 
-            result.Items = query;
+            result.Items = query.OrderBy(a => a.BookGradeId).Skip(input.SkipCount).Take(input.MaxResultCount).ToList();
+
             result.TotalCount = query.Count;
 
             return result;
@@ -64,5 +82,100 @@ namespace Books.Administration.Books
         }
 
 
+        // Get selected books then add mandatory books
+        public async Task<PagedResultDto<RequiredBooksDto>> GetRequiredBooks(BookInput input)
+        {
+
+            var Books = new List<RequiredBooksDto>();
+
+            var query = (from s in _selectedBooks.GetAll().Where(a => a.IsSelected)
+                         join ac in _academicGradeBooks.GetAll()
+                         .Include(a => a.Grade).Include(a => a.Book).Include(a => a.Publisher)
+                         .WhereIf(!input.filter.IsNullOrWhiteSpace()||input.gradId!=0,
+                         a => a.Book.Name.Contains(input.filter) ||
+                         a.Book.Isbn.Contains(input.filter) ||
+                         a.Publisher.Name.Contains(input.filter) ||
+                         a.GradeId == input.gradId)
+                         on s.AcademicGradeBookId equals ac.Id
+                         select new
+                         {
+                             bookId = ac.BookId,
+                             Isbn = ac.Book.Isbn,
+                             name = ac.Book.Name,
+                             gradeId = ac.GradeId,
+                             gradeName = ac.Grade.Name,
+                             publisher = ac.Publisher.Name,
+                             mandatory = ac.Book.IsMandatory,
+
+                         }
+                       ).AsEnumerable().GroupBy(a=>new { a.Isbn, a.gradeId }).ToList();
+
+            var MandBooks = (from s in _studentBooks.GetAll().Where(a => a.IsMandatory)
+                         join ac in _academicGradeBooks.GetAll()
+                         .Include(a => a.Grade).Include(a => a.Book).Include(a => a.Publisher)
+                         .WhereIf(!input.filter.IsNullOrWhiteSpace() || input.gradId != 0,
+                         a => a.Book.Name.Contains(input.filter) ||
+                         a.Book.Isbn.Contains(input.filter) ||
+                         a.Publisher.Name.Contains(input.filter) ||
+                         a.GradeId == input.gradId)
+                         on s.Id equals ac.BookId
+                         select new
+                         {
+                             bookId = s.Id,
+                             Isbn = s.Isbn,
+                             name = s.Name,
+                             gradeId = ac.GradeId,
+                             gradeName = ac.Grade.Name,
+                             publisher = ac.Publisher.Name,
+                             mandatory = s.IsMandatory,
+
+                         }
+                       ).AsEnumerable().GroupBy(a => new { a.Isbn, a.gradeId }).ToList();
+
+
+
+            var AcademicStudents = _academicStudents.GetAll().Include(a=>a.AcademicGradeClasses);
+
+            foreach (var isb in query)
+            {
+                var book = new RequiredBooksDto();
+
+                book.Isbn = isb.Key.Isbn;
+                book.GradeId = (int)isb.Key.gradeId;
+                book.GradeName = isb.FirstOrDefault().gradeName;
+                book.BookName = isb.FirstOrDefault().name;
+                book.PublisherName = isb.FirstOrDefault().publisher;
+                book.Count=isb.Count();
+                book.IsMandatory = isb.FirstOrDefault().mandatory;
+
+                Books.Add(book);
+            }
+
+            foreach (var isb in MandBooks)
+            {
+                int studentsCount = AcademicStudents
+                    .Where(a=>a.AcademicGradeClasses.GradeId== isb.Key.gradeId).Count();
+
+                var Mbook = new RequiredBooksDto();
+
+                Mbook.Isbn = isb.Key.Isbn;
+                Mbook.GradeId = (int)isb.Key.gradeId;
+                Mbook.GradeName = isb.FirstOrDefault().gradeName;
+                Mbook.BookName = isb.FirstOrDefault().name;
+                Mbook.PublisherName = isb.FirstOrDefault().publisher;
+                Mbook.Count = isb.Count() * studentsCount;
+                Mbook.IsMandatory = isb.FirstOrDefault().mandatory;
+
+                Books.Add(Mbook);
+            }
+
+            var result = new PagedResultDto<RequiredBooksDto>();
+            result.Items = Books.OrderBy(b => b.GradeId)
+                .Skip(input.SkipCount).Take(input.MaxResultCount).ToList();
+            result.TotalCount= Books.Count;
+
+            return result; 
+
+        }
     }
 }

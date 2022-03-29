@@ -13,11 +13,10 @@ namespace Books.Administration.Books.Dto
         public decimal Price { get; set; }
         public int BookGradeId { get; set; }
         public string BookGradeName { get; set; }
-
         public bool IsMandatory { get; set; }
         public bool IsPrevoius { get; set; }
         public bool IsAdditional { get; set; }
-
+        public string PublisherName { get; set; }
 
     }
 }
