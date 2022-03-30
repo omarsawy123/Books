@@ -7,6 +7,7 @@ using Abp.Application.Services.Dto;
 using Abp.Collections.Extensions;
 using Abp.Domain.Repositories;
 using Abp.Extensions;
+using Books.Administration.Books.Dto;
 using Books.Administration.Dto;
 using Books.Authorization.Users;
 using Microsoft.EntityFrameworkCore;
@@ -248,22 +249,38 @@ namespace Books.Administration.StudentsAppServices
                 
             }
 
-          
+
             //string[] filters = new string[4];
             //filters.Contains(input.filter);
 
-            ListItems = ListItems.WhereIf(!input.filter.IsNullOrWhiteSpace()
-                , s => s.Name.ToLower().Contains(input.filter.ToLower()) ||
-               s.NameAr.ToLower().Contains(input.filter.ToLower()) || s.FamilyName.ToLower().Contains(input.filter.ToLower())
-               || s.FamilyNameAr.ToLower().Contains(input.filter.ToLower()))
-                .WhereIf(input.gradeId != 0, s => s.GradeId == input.gradeId).ToList();
+            //ListItems = ListItems.WhereIf(!input.filter.IsNullOrWhiteSpace()
+            //    , s => s.Name.ToLower().Contains(input.filter.ToLower()) ||
+            //   s.NameAr.ToLower().Contains(input.filter.ToLower()) || s.FamilyName.ToLower().Contains(input.filter.ToLower())
+            //   || s.FamilyNameAr.ToLower().Contains(input.filter.ToLower()))
+            //    .WhereIf(input.gradeId != 0, s => s.GradeId == input.gradeId).ToList();
 
 
-            result.Items = ListItems.OrderBy(s => s.GradeId).Take(input.MaxResultCount).Skip(input.SkipCount).ToList();
+            result.Items = ListItems.OrderBy(s => s.GradeId).Skip(input.SkipCount).Take(input.MaxResultCount).ToList();
             result.TotalCount = ListItems.Count;
             return result; 
 
            
+
+        }
+
+
+        public List<GradesDropDownDto> GetAllGradesForDropDown()
+        {
+            var result = _grades.GetAll()
+                .Select(a => new GradesDropDownDto
+                {
+                    Id = a.Id,
+                    Name = a.Name,
+                    NameAr = a.NameAr,
+                    StudyOrder = a.StudyOrder
+                }).OrderBy(g => g.StudyOrder).ToList();
+
+            return result;
 
         }
 
