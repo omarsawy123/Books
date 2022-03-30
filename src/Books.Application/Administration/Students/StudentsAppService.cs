@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
+using Abp.Collections.Extensions;
 using Abp.Domain.Repositories;
-using Books.Administration;
+using Abp.Extensions;
 using Books.Administration.Dto;
 using Books.Authorization.Users;
-using Books.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Books.Administration.StudentsAppServices
@@ -27,13 +26,6 @@ namespace Books.Administration.StudentsAppServices
         private readonly IRepository<StudentBooks> _books;
         private readonly IRepository<Publishers> _publisher;
         private readonly IRepository<StudentMandatoryBooks> _studentMandatoryBooks;
-
-
-
-
-
-
-
 
 
 
@@ -64,32 +56,32 @@ namespace Books.Administration.StudentsAppServices
         }
 
 
-        public void GetAl(PagedAndSortedResultRequestDto input)
-        {
+        //public void GetAl(PagedAndSortedResultRequestDto input)
+        //{
 
-            var query = (from s in _repository.GetAll().Where(s=>s.Id==493)
-                         join ac in _academicStudents.GetAll()
-                         on s.Id equals ac.StudentId
-                         join agc in _academicGradeClasses.GetAll()
-                         on ac.AcademicGradeClassId equals agc.Id
-                         join st in _selectedBooks.GetAll()
-                         on s.Id equals st.StudentId
-                         select new
-                         {
-                             Name=s.Name,
-                             FamilyName=s.FamilyName,
-                             NameAr=s.NameAr,
-                             FamilyNameAr=s.FamilyNameAr,
-                             GradeName=agc.Grade.Name,
-                             GradeId=agc.GradeId,
-                             ClassName=agc.Class.Name,
-                             ClassId=agc.ClassId,
+        //    var query = (from s in _repository.GetAll().Where(s=>s.Id==493)
+        //                 join ac in _academicStudents.GetAll()
+        //                 on s.Id equals ac.StudentId
+        //                 join agc in _academicGradeClasses.GetAll()
+        //                 on ac.AcademicGradeClassId equals agc.Id
+        //                 join st in _selectedBooks.GetAll()
+        //                 on s.Id equals st.StudentId
+        //                 select new
+        //                 {
+        //                     Name=s.Name,
+        //                     FamilyName=s.FamilyName,
+        //                     NameAr=s.NameAr,
+        //                     FamilyNameAr=s.FamilyNameAr,
+        //                     GradeName=agc.Grade.Name,
+        //                     GradeId=agc.GradeId,
+        //                     ClassName=agc.Class.Name,
+        //                     ClassId=agc.ClassId,
                              
 
-                         }
-                       ).ToList();
+        //                 }
+        //               ).ToList();
 
-        }
+        //}
 
         public async Task<DashBoardStatisticsDto> GetStudentsForDashboard()
         {
@@ -162,10 +154,15 @@ namespace Books.Administration.StudentsAppServices
         }
 
 
-        public StudentAllBooksDto GetAllStudentSelectedBooks()
+        public override Task<PagedResultDto<StudentsDto>> GetAllAsync(PagedAndSortedResultRequestDto input)
+        {
+            return base.GetAllAsync(input);
+        }
+        public Task<PagedResultDto<StudentAllBooksDto>> GetAllStudentSelectedBooks(StudentInputDto input)
         {
 
-            var result = new List<StudentAllBooksDto>();
+            var result = new PagedResultDto<StudentAllBooksDto>();
+            var ListItems=new List<StudentAllBooksDto>();
 
             var students = (from s in _selectedBooks.GetAll()
                             join agc in _academicGradeBooks.GetAll() on s.AcademicGradeBookId equals agc.Id
@@ -235,11 +232,14 @@ namespace Books.Administration.StudentsAppServices
 
                 item.SelectedBooksTotal = item.SelectedBooks.Sum(b => b.BookPrice);
 
-                result.Add(item);
+                ListItems.Add(item);
                 
             }
 
-            return result.FirstOrDefault(s=>s.Id==493); 
+            result.Items = ListItems.OrderBy(s=>s.GradeId).Take(input.MaxResultCount).Skip(input.SkipCount).ToList();
+            result.TotalCount = ListItems.Count;
+
+            return result; 
 
             //foreach (var stud in students.GroupBy(a=>a.StudentId))
             //{

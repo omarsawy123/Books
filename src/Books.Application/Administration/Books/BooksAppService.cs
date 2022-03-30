@@ -22,8 +22,7 @@ namespace Books.Administration.Books
         private readonly IRepository<AcademicGradeBooks, int> _academicGradeBooks;
         private readonly IRepository<StudentSelectedBooks, int> _selectedBooks;
         private readonly IRepository<AcademicStudents, int> _academicStudents;
-
-
+        private readonly IRepository<Grades, int> _grades;
 
 
 
@@ -31,13 +30,15 @@ namespace Books.Administration.Books
         public BooksAppService(IRepository<StudentBooks, int> studentBooks
             , IRepository<AcademicGradeBooks, int> academicGradeBooks,
             IRepository<StudentSelectedBooks, int> selectedBooks,
-            IRepository<AcademicStudents, int> academicStudents) 
+            IRepository<AcademicStudents, int> academicStudents,
+             IRepository<Grades, int> grades) 
             :base(studentBooks)
         {
             _studentBooks=  studentBooks;
             _academicGradeBooks= academicGradeBooks;    
             _selectedBooks= selectedBooks;
             _academicStudents= academicStudents;
+            _grades = grades;
         }
 
 
@@ -94,8 +95,8 @@ namespace Books.Administration.Books
                          .WhereIf(!input.filter.IsNullOrWhiteSpace()||input.gradId!=0,
                          a => a.Book.Name.Contains(input.filter) ||
                          a.Book.Isbn.Contains(input.filter) ||
-                         a.Publisher.Name.Contains(input.filter) ||
-                         a.GradeId == input.gradId)
+                         a.Publisher.Name.Contains(input.filter))
+                         .WhereIf(input.gradId != 0, b => b.GradeId == input.gradId)
                          on s.AcademicGradeBookId equals ac.Id
                          select new
                          {
@@ -111,25 +112,25 @@ namespace Books.Administration.Books
                        ).AsEnumerable().GroupBy(a=>new { a.Isbn, a.gradeId }).ToList();
 
             var MandBooks = (from s in _studentBooks.GetAll().Where(a => a.IsMandatory)
-                         join ac in _academicGradeBooks.GetAll()
-                         .Include(a => a.Grade).Include(a => a.Book).Include(a => a.Publisher)
-                         .WhereIf(!input.filter.IsNullOrWhiteSpace() || input.gradId != 0,
-                         a => a.Book.Name.Contains(input.filter) ||
-                         a.Book.Isbn.Contains(input.filter) ||
-                         a.Publisher.Name.Contains(input.filter) ||
-                         a.GradeId == input.gradId)
-                         on s.Id equals ac.BookId
-                         select new
-                         {
-                             bookId = s.Id,
-                             Isbn = s.Isbn,
-                             name = s.Name,
-                             gradeId = ac.GradeId,
-                             gradeName = ac.Grade.Name,
-                             publisher = ac.Publisher.Name,
-                             mandatory = s.IsMandatory,
+                             join ac in _academicGradeBooks.GetAll()
+                             .Include(a => a.Grade).Include(a => a.Book).Include(a => a.Publisher)
+                             .WhereIf(!input.filter.IsNullOrWhiteSpace(),
+                             a => a.Book.Name.Contains(input.filter) ||
+                             a.Book.Isbn.Contains(input.filter) ||
+                             a.Publisher.Name.Contains(input.filter))
+                             .WhereIf(input.gradId != 0, b => b.GradeId == input.gradId)
+                             on s.Id equals ac.BookId
+                             select new
+                             {
+                                 bookId = s.Id,
+                                 Isbn = s.Isbn,
+                                 name = s.Name,
+                                 gradeId = ac.GradeId,
+                                 gradeName = ac.Grade.Name,
+                                 publisher = ac.Publisher.Name,
+                                 mandatory = s.IsMandatory,
 
-                         }
+                             }
                        ).AsEnumerable().GroupBy(a => new { a.Isbn, a.gradeId }).ToList();
 
 
@@ -177,5 +178,24 @@ namespace Books.Administration.Books
             return result; 
 
         }
+
+
+
+        public List<GradesDropDownDto> GetAllGradesForDropDown()
+        {
+            var result = _grades.GetAll()
+                .Select(a => new GradesDropDownDto
+                {
+                    Id = a.Id,
+                    Name = a.Name,
+                    NameAr = a.NameAr,
+                    StudyOrder = a.StudyOrder
+                }).OrderBy(g => g.StudyOrder).ToList();
+
+            return result;
+           
+            
+        }
+
     }
 }
