@@ -158,46 +158,58 @@ namespace Books.Administration.StudentsAppServices
         {
             return base.GetAllAsync(input);
         }
-        public Task<PagedResultDto<StudentAllBooksDto>> GetAllStudentSelectedBooks(StudentInputDto input)
+        public async Task<PagedResultDto<StudentAllBooksDto>> GetAllStudentSelectedBooks(StudentInputDto input)
         {
 
             var result = new PagedResultDto<StudentAllBooksDto>();
             var ListItems=new List<StudentAllBooksDto>();
 
             var students = (from s in _selectedBooks.GetAll()
-                            join agc in _academicGradeBooks.GetAll() on s.AcademicGradeBookId equals agc.Id
-                            join b in _books.GetAll() on agc.BookId equals b.Id
+
+                            join agc in _academicGradeBooks.GetAll()
+                             on s.AcademicGradeBookId equals agc.Id
+
+                            join b in _books.GetAll()
+
+                            on agc.BookId equals b.Id
+
                             into allB
                             from x in allB.DefaultIfEmpty()
+
                             join pu in _publisher.GetAll() on agc.PublisherId equals pu.Id
                             join grd in _grades.GetAll() on agc.GradeId equals grd.Id
+
                             select new SelectedBooksDto
                             {
                                 BookId = x.Id,
                                 BookName = x.Name,
+                                Isbn = x.Isbn,
                                 BookGradeName = grd.Name,
                                 BookGradeId = grd.Id,
                                 PublihserName = pu.Name,
                                 IsMandatory = x.IsMandatory,
                                 IsPrevious = x.IsPreviousYear,
                                 StudentId = s.StudentId,
-                                IsSelected=s.IsSelected,
-                                BookPrice=x.Price,
+                                IsSelected = s.IsSelected,
+                                BookPrice = x.Price,
                             }
                             ).ToList();
 
             var MandatoryBooks = (from b in _books.GetAll().Where(b => b.IsMandatory)
                                   join agc in _academicGradeBooks.GetAll()
+                               
                                   on b.Id equals agc.BookId
+
                                   join g in _grades.GetAll() 
                                   on agc.GradeId equals g.Id
+   
                                   join p in _publisher.GetAll() on agc.PublisherId equals p.Id
-                                  //join s in _repository.GetAll() on 
 
                                   select new SelectedBooksDto
                                   {
                                       BookId = b.Id,
                                       BookName = b.Name,
+                                      Isbn = b.Isbn,
                                       IsMandatory = b.IsMandatory,
                                       BookGradeId = g.Id,
                                       BookGradeName=g.Name,
@@ -236,24 +248,22 @@ namespace Books.Administration.StudentsAppServices
                 
             }
 
-            result.Items = ListItems.OrderBy(s=>s.GradeId).Take(input.MaxResultCount).Skip(input.SkipCount).ToList();
-            result.TotalCount = ListItems.Count;
+          
+            //string[] filters = new string[4];
+            //filters.Contains(input.filter);
 
+            ListItems = ListItems.WhereIf(!input.filter.IsNullOrWhiteSpace()
+                , s => s.Name.ToLower().Contains(input.filter.ToLower()) ||
+               s.NameAr.ToLower().Contains(input.filter.ToLower()) || s.FamilyName.ToLower().Contains(input.filter.ToLower())
+               || s.FamilyNameAr.ToLower().Contains(input.filter.ToLower()))
+                .WhereIf(input.gradeId != 0, s => s.GradeId == input.gradeId).ToList();
+
+
+            result.Items = ListItems.OrderBy(s => s.GradeId).Take(input.MaxResultCount).Skip(input.SkipCount).ToList();
+            result.TotalCount = ListItems.Count;
             return result; 
 
-            //foreach (var stud in students.GroupBy(a=>a.StudentId))
-            //{
-
-            //    int GradeId = stud.FirstOrDefault().BookGradeId;
-
-            //    var MandatoryValues = MandatoryBooks.Where(b => b.BookGradeId == GradeId).ToList();
-            //    int temp = stud.FirstOrDefault().StudentId;
-
-            //    MandatoryValues.ForEach(b=>b.StudentId=temp);
-
-            //    students.AddRange(MandatoryValues);
-
-            //}
+           
 
         }
 

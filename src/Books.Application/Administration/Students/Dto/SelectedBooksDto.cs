@@ -10,6 +10,8 @@ namespace Books.Administration.Dto
     {
         public int BookId { get; set; }
         public string BookName { get; set; }
+        public string Isbn { get; set; }
+
         public bool IsSelected { get; set; }
         public bool IsMandatory { get; set; }
         public bool IsPrevious { get; set; }
