@@ -12,6 +12,7 @@ using Books.Administration.Dto;
 using Books.Authorization.Users;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace Books.Administration.StudentsAppServices
 {
     public  class StudentsAppService: AsyncCrudAppService<Students, StudentsDto>
@@ -27,6 +28,7 @@ namespace Books.Administration.StudentsAppServices
         private readonly IRepository<StudentBooks> _books;
         private readonly IRepository<Publishers> _publisher;
         private readonly IRepository<StudentMandatoryBooks> _studentMandatoryBooks;
+    
 
 
 
@@ -155,9 +157,108 @@ namespace Books.Administration.StudentsAppServices
         }
 
 
-        public override Task<PagedResultDto<StudentsDto>> GetAllAsync(PagedAndSortedResultRequestDto input)
+
+        public async Task<List<StudentAllBooksDto>> GetSelectedBooksForReport(StudentReportInputDto input)
         {
-            return base.GetAllAsync(input);
+            var ListItems = new List<StudentAllBooksDto>();
+
+            var students = (from s in _selectedBooks.GetAll().Where(s => s.IsSelected)
+
+                            join agc in _academicGradeBooks.GetAll()
+                             on s.AcademicGradeBookId equals agc.Id
+
+                            join b in _books.GetAll()
+
+                            on agc.BookId equals b.Id
+
+                            into allB
+                            from x in allB.DefaultIfEmpty()
+
+                            join pu in _publisher.GetAll() on agc.PublisherId equals pu.Id
+                            join grd in _grades.GetAll() on agc.GradeId equals grd.Id
+
+                            select new SelectedBooksDto
+                            {
+                                BookId = x.Id,
+                                BookName = x.Name,
+                                Isbn = x.Isbn,
+                                BookGradeName = grd.Name,
+                                BookGradeId = grd.Id,
+                                PublihserName = pu.Name,
+                                IsMandatory = x.IsMandatory,
+                                IsPrevious = x.IsPreviousYear,
+                                StudentId = s.StudentId,
+                                IsSelected = s.IsSelected,
+                                BookPrice = x.Price,
+                            }
+                            ).ToList();
+
+            var MandatoryBooks = (from b in _books.GetAll().Where(b => b.IsMandatory)
+                                  join agc in _academicGradeBooks.GetAll()
+
+                                  on b.Id equals agc.BookId
+
+                                  join g in _grades.GetAll()
+                                  on agc.GradeId equals g.Id
+
+                                  join p in _publisher.GetAll() on agc.PublisherId equals p.Id
+
+                                  select new SelectedBooksDto
+                                  {
+                                      BookId = b.Id,
+                                      BookName = b.Name,
+                                      Isbn = b.Isbn,
+                                      IsMandatory = b.IsMandatory,
+                                      BookGradeId = g.Id,
+                                      BookGradeName = g.Name,
+                                      PublihserName = p.Name,
+                                      BookPrice = b.Price
+                                  }
+                                 ).ToList();
+
+
+            students.AddRange(MandatoryBooks);
+
+            var AcademicStudents = _academicStudents.GetAll().Include(a => a.Student).Include(a => a.AcademicGradeClasses).Include(a => a.AcademicGradeClasses.Grade).
+                Include(a => a.AcademicGradeClasses.Class)
+                .WhereIf(input.Id!=0,s=>s.StudentId==input.Id).ToList();
+
+            //if (!input.filter.IsNullOrWhiteSpace())
+            //{
+            //    AcademicStudents = AcademicStudents.Where(a => (a.Student.Name + ' ' + a.Student.FamilyName).ToLower().Contains(input.filter.ToLower())
+            //    || (a.Student.NameAr + ' ' + a.Student.FamilyNameAr).ToLower().Contains(input.filter.ToLower())).ToList();
+            //}
+            //if (input.gradeId != 0)
+            //{
+            //    AcademicStudents = AcademicStudents.Where(a => a.AcademicGradeClasses.GradeId == input.gradeId).ToList();
+            //}
+
+            foreach (var stud in AcademicStudents)
+            {
+                var item = new StudentAllBooksDto();
+
+                item.Id = stud.Student.Id;
+                item.Name = stud.Student.Name;
+                item.NameAr = stud.Student.NameAr;
+                item.FamilyName = stud.Student.FamilyName;
+                item.FamilyNameAr = stud.Student.FamilyNameAr;
+                item.GradeId = (int)stud.AcademicGradeClasses.GradeId;
+                item.GradeName = stud.AcademicGradeClasses.Grade.Name;
+                item.ClassId = (int)stud.AcademicGradeClasses.ClassId;
+                item.ClassName = stud.AcademicGradeClasses.Class.Name;
+
+                item.SelectedBooks = students.Where(a => a.StudentId == stud.Student.Id || (a.BookGradeId == stud.AcademicGradeClasses.GradeId && a.IsMandatory)).ToList();
+
+                item.SelectedBooksCount = item.SelectedBooks.Count;
+
+                item.SelectedBooksTotal = item.SelectedBooks.Sum(b => b.BookPrice);
+
+                ListItems.Add(item);
+
+            }
+
+
+            return ListItems;
         }
         public async Task<PagedResultDto<StudentAllBooksDto>> GetAllStudentSelectedBooks(StudentInputDto input)
         {
@@ -165,7 +266,7 @@ namespace Books.Administration.StudentsAppServices
             var result = new PagedResultDto<StudentAllBooksDto>();
             var ListItems=new List<StudentAllBooksDto>();
 
-            var students = (from s in _selectedBooks.GetAll()
+            var students = (from s in _selectedBooks.GetAll().Where(s=>s.IsSelected)
 
                             join agc in _academicGradeBooks.GetAll()
                              on s.AcademicGradeBookId equals agc.Id
@@ -224,6 +325,16 @@ namespace Books.Administration.StudentsAppServices
 
             var AcademicStudents= _academicStudents.GetAll().Include(a=>a.Student).Include(a=>a.AcademicGradeClasses).Include(a=>a.AcademicGradeClasses.Grade).
                 Include(a => a.AcademicGradeClasses.Class).ToList();
+
+            if (!input.filter.IsNullOrWhiteSpace())
+            {
+                AcademicStudents = AcademicStudents.Where(a => (a.Student.Name + ' ' + a.Student.FamilyName).ToLower().Contains(input.filter.ToLower()) 
+                || (a.Student.NameAr + ' ' + a.Student.FamilyNameAr).ToLower().Contains(input.filter.ToLower())).ToList();
+            }
+            if (input.gradeId != 0)
+            {
+                AcademicStudents=AcademicStudents.Where(a=>a.AcademicGradeClasses.GradeId == input.gradeId).ToList();   
+            }
 
             foreach (var stud in AcademicStudents)
             {
