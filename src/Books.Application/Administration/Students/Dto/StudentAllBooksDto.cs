@@ -17,6 +17,7 @@ namespace Books.Administration.Dto
 
         public int SelectedBooksCount { get; set; }
 
-        public decimal SelectedBooksTotal { get; set; } 
+        public decimal SelectedBooksTotal { get; set; }
+        public string AcademicYearName { get;set; }
     }
 }

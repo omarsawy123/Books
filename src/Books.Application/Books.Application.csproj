@@ -12,6 +12,11 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="itext7" Version="7.2.1" />
+    <PackageReference Include="iTextSharp" Version="5.5.13.3" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Books.Core\Books.Core.csproj" />
     <ProjectReference Include="..\Books.EntityFrameworkCore\Books.EntityFrameworkCore.csproj" />
   </ItemGroup>
