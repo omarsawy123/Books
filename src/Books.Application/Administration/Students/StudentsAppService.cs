@@ -383,18 +383,6 @@ namespace Books.Administration.StudentsAppServices
         }
 
 
-       
-        public  void  CreateTablePdf(List<StudentAllBooksDto> Books)
-        {
-
-
-            
-
-        }
-
-
-
-
 
 
         //public async void UpdateStudentsUserId()
