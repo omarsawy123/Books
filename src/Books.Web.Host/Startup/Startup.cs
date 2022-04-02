@@ -95,6 +95,8 @@ namespace Books.Web.Host.Startup
 
             app.UseCors(_defaultCorsPolicyName); // Enable CORS!
 
+            
+
             app.UseStaticFiles();
 
             app.UseRouting();

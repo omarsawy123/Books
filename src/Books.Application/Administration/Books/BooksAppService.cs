@@ -92,11 +92,11 @@ namespace Books.Administration.Books
             var query = (from s in _selectedBooks.GetAll().Where(a => a.IsSelected)
                          join ac in _academicGradeBooks.GetAll()
                          .Include(a => a.Grade).Include(a => a.Book).Include(a => a.Publisher)
-                         .WhereIf(!input.filter.IsNullOrWhiteSpace()||input.gradId!=0,
+                         .WhereIf(!input.filter.IsNullOrWhiteSpace(),
                          a => a.Book.Name.Contains(input.filter) ||
                          a.Book.Isbn.Contains(input.filter) ||
                          a.Publisher.Name.Contains(input.filter))
-                         .WhereIf(input.gradId != 0, b => b.GradeId == input.gradId)
+                         .WhereIf(input.gradId != 0, b => b.Grade.Id == input.gradId)
                          on s.AcademicGradeBookId equals ac.Id
                          select new
                          {
@@ -139,6 +139,7 @@ namespace Books.Administration.Books
 
             foreach (var isb in query)
             {
+               
                 var book = new RequiredBooksDto();
 
                 book.Isbn = isb.Key.Isbn;

@@ -205,9 +205,10 @@ namespace Books.Administration.StudentsAppServices
 
             students.AddRange(MandatoryBooks);
 
+
             var AcademicStudents = _academicStudents.GetAll().Include(a => a.Student).Include(a => a.AcademicGradeClasses.AcademicYear).Include(a => a.AcademicGradeClasses).Include(a => a.AcademicGradeClasses.Grade).
                 Include(a => a.AcademicGradeClasses.Class)
-                .WhereIf(input.Id != 0, s => s.StudentId == input.Id).ToList();
+                .WhereIf(input.Id.Count > 0, s => input.Id.Contains(s.StudentId)).ToList();
 
             //if (!input.filter.IsNullOrWhiteSpace())
             //{
@@ -235,6 +236,8 @@ namespace Books.Administration.StudentsAppServices
                 item.AcademicYearName = stud.AcademicGradeClasses.AcademicYear.AcademicYearName;
 
                 item.SelectedBooks = students.Where(a => a.StudentId == stud.Student.Id || (a.BookGradeId == stud.AcademicGradeClasses.GradeId && a.IsMandatory)).ToList();
+
+                item.SelectedBooks = item.SelectedBooks.OrderByDescending(a => a.IsPrevious).ToList();
 
                 item.SelectedBooksCount = item.SelectedBooks.Count;
 

@@ -8,6 +8,6 @@ namespace Books.Administration.Dto
 {
     public class StudentReportInputDto
     {
-        public int Id { get; set; }
+        public List<int> Id { get; set; }
     }
 }
