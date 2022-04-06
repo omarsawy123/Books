@@ -4,12 +4,12 @@ using Abp.Domain.Repositories;
 using Abp.Extensions;
 using Abp.Linq.Extensions;
 using Books.Administration.Books.Dto;
-using Books.Administration.StudentsAppServices;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Books.Administration.Books
@@ -24,14 +24,14 @@ namespace Books.Administration.Books
         private readonly IRepository<AcademicStudents, int> _academicStudents;
         private readonly IRepository<Grades, int> _grades;
 
-
-
+        IWebHostEnvironment _webHostEnv;
 
         public BooksAppService(IRepository<StudentBooks, int> studentBooks
             , IRepository<AcademicGradeBooks, int> academicGradeBooks,
             IRepository<StudentSelectedBooks, int> selectedBooks,
             IRepository<AcademicStudents, int> academicStudents,
-             IRepository<Grades, int> grades) 
+             IRepository<Grades, int> grades,
+             IWebHostEnvironment webHostEnv) 
             :base(studentBooks)
         {
             _studentBooks=  studentBooks;
@@ -39,6 +39,7 @@ namespace Books.Administration.Books
             _selectedBooks= selectedBooks;
             _academicStudents= academicStudents;
             _grades = grades;
+            _webHostEnv= webHostEnv;
         }
 
 
@@ -198,5 +199,7 @@ namespace Books.Administration.Books
             
         }
 
+
+       
     }
 }
