@@ -8,6 +8,6 @@ namespace Books.Administration.Books.Dto
 {
     public class ImportBooksExcel
     {
-        public string MyProperty { get; set; }
+        public string name { get; set; }
     }
 }
