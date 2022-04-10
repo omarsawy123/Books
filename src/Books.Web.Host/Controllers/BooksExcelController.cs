@@ -1,4 +1,5 @@
-﻿using Abp.Domain.Repositories;
+﻿using Abp.Application.Services.Dto;
+using Abp.Domain.Repositories;
 using Abp.UI;
 using Books.Administration;
 using Books.Administration.Books.Dto;
@@ -18,12 +19,20 @@ namespace Books.Web.Host.Controllers
     {
         IWebHostEnvironment _webHostEnvironment;
         private readonly IRepository<Grades, int> _grades;
+        private readonly IRepository<StudentBooks, int> _books;
+        private readonly IRepository<AcademicGradeBooks, int> _academicBooks;
+        private readonly IRepository<Publishers, int> _publisher;
 
 
-        public BooksExcelController(IWebHostEnvironment webHostEnvironment, IRepository<Grades, int> grades)
+
+
+
+        public BooksExcelController(IWebHostEnvironment webHostEnvironment, IRepository<Grades, int> grades, IRepository<StudentBooks, int> books, IRepository<AcademicGradeBooks, int> academicBooks)
         {
             _webHostEnvironment = webHostEnvironment;
-            _grades = grades;   
+            _grades = grades;
+            _books = books;
+            _academicBooks = academicBooks;
         }
 
 
@@ -35,7 +44,7 @@ namespace Books.Web.Host.Controllers
             return File(System.IO.File.ReadAllBytes(filePath), "application/xlsx", "ExampleFile.xlsx");
         }
 
-        public int PreviewBooksExcel(IFormFile file)
+        public PagedResultDto<BooksDto> PreviewBooksExcel(IFormFile file, BookInput input)
         {
 
             var Books = new List<BooksDto>();
@@ -55,7 +64,7 @@ namespace Books.Web.Host.Controllers
 
                     for (int row = 2; row <= rowCount; row++)
                     {
-                       
+
                         Books.Add(new BooksDto()
                         {
                             ISBN = sheet.Cells[row, 1].Value.ToString(),
@@ -73,14 +82,13 @@ namespace Books.Web.Host.Controllers
                     }
                 }
 
-                //var result = new PagedResultDto<BooksDto>();
+                var result = new PagedResultDto<BooksDto>();
 
-                //result.Items = Books.Skip(input.SkipCount).Take(input.MaxResultCount).ToList();
-                //result.TotalCount = Books.Count;
+                result.Items = Books.Skip(input.SkipCount).Take(input.MaxResultCount).ToList();
+                result.TotalCount = Books.Count;
 
-                //return result;
+                return result;
 
-                return 123333;
 
             }
             catch (Exception ex)
@@ -91,6 +99,34 @@ namespace Books.Web.Host.Controllers
 
         }
 
+        public void SaveExcel(List<BooksDto> books)
+        {
 
+            foreach (var book in books)
+            {
+                int bookId = _books.InsertAndGetId(new StudentBooks()
+                {
+                    Name = book.Name,
+                    Isbn = book.ISBN,
+                    IsPreviousYear = book.IsPrevoius,
+                    IsMandatory = book.IsMandatory,
+                    IsAdditional = book.IsAdditional,
+                    Price = book.Price,
+                });
+
+                _academicBooks.Insert(new AcademicGradeBooks()
+                {
+                    AcademicYearId = 1,
+                    GradeId = _grades.FirstOrDefault(g => g.Name == book.BookGradeName).Id,
+                    BookId = bookId,
+                    PublisherId = _publisher.FirstOrDefault(p => p.Name == book.PublisherName).Id,
+
+                });
+
+            }
+
+
+
+        }
     }
 }

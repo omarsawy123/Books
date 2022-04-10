@@ -204,58 +204,58 @@ namespace Books.Administration.Books
         }
 
 
-        public PagedResultDto<BooksDto> PreviewBooksExcel(IFormFile file, PagedResultRequestDto input)
-        {
+        //public PagedResultDto<BooksDto> PreviewBooksExcel(IFormFile file, PagedResultRequestDto input)
+        //{
 
-            var Books = new List<BooksDto>();
+        //    var Books = new List<BooksDto>();
 
-            var Grades = _grades.GetAll().ToList();
+        //    var Grades = _grades.GetAll().ToList();
 
-            var ms = new MemoryStream();
-            try
-            {
-                file.CopyTo(ms);
+        //    var ms = new MemoryStream();
+        //    try
+        //    {
+        //        file.CopyTo(ms);
 
-                using (var package = new ExcelPackage(ms))
-                {
-                    ExcelWorksheet sheet = package.Workbook.Worksheets[0];
+        //        using (var package = new ExcelPackage(ms))
+        //        {
+        //            ExcelWorksheet sheet = package.Workbook.Worksheets[0];
 
-                    var rowCount = sheet.Dimension.Rows;
+        //            var rowCount = sheet.Dimension.Rows;
 
-                    for (int row = 2; row <= rowCount; row++)
-                    {
-                        Books.Add(new BooksDto()
-                        {
-                            ISBN = sheet.Cells[row, 1].Value.ToString(),
-                            Name = sheet.Cells[row, 2].Value.ToString(),
-                            Price = Convert.ToDecimal(sheet.Cells[row, 3].Value),
-                            BookGradeName = sheet.Cells[row, 4].Value.ToString(),
-                            BookGradeId = Grades.
-                            FirstOrDefault(a => a.Name == sheet.Cells[row, 4].Value.ToString()).Id,
+        //            for (int row = 2; row <= rowCount; row++)
+        //            {
+        //                Books.Add(new BooksDto()
+        //                {
+        //                    ISBN = sheet.Cells[row, 1].Value.ToString(),
+        //                    Name = sheet.Cells[row, 2].Value.ToString(),
+        //                    Price = Convert.ToDecimal(sheet.Cells[row, 3].Value),
+        //                    BookGradeName = sheet.Cells[row, 4].Value.ToString(),
+        //                    BookGradeId = Grades.
+        //                    FirstOrDefault(a => a.Name == sheet.Cells[row, 4].Value.ToString()).Id,
 
-                            IsMandatory = sheet.Cells[row, 5].Value.ToString().ToLower() == "true" ? true : false,
-                            IsPrevoius = sheet.Cells[row, 6].Value.ToString().ToLower() == "true" ? true : false,
-                            IsAdditional = sheet.Cells[row, 7].Value.ToString().ToLower() == "true" ? true : false,
-                            PublisherName = sheet.Cells[row, 8].Value.ToString(),
-                        });
-                    }
-                }
+        //                    IsMandatory = sheet.Cells[row, 5].Value.ToString().ToLower() == "true" ? true : false,
+        //                    IsPrevoius = sheet.Cells[row, 6].Value.ToString().ToLower() == "true" ? true : false,
+        //                    IsAdditional = sheet.Cells[row, 7].Value.ToString().ToLower() == "true" ? true : false,
+        //                    PublisherName = sheet.Cells[row, 8].Value.ToString(),
+        //                });
+        //            }
+        //        }
 
-                var result = new PagedResultDto<BooksDto>();
+        //        var result = new PagedResultDto<BooksDto>();
 
-                result.Items = Books.Skip(input.SkipCount).Take(input.MaxResultCount).ToList();
-                result.TotalCount = Books.Count;
+        //        result.Items = Books.Skip(input.SkipCount).Take(input.MaxResultCount).ToList();
+        //        result.TotalCount = Books.Count;
 
-                return result;
+        //        return result;
 
-            }
-            catch (Exception ex)
-            {
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                throw new UserFriendlyException("Error", ex);
-            }
+        //        throw new UserFriendlyException("Error", ex);
+        //    }
 
-        }
+        //}
 
     }
 }
